@@ -2,7 +2,7 @@
     "name": "TEST HAT",
     "info": "테스트용 모자입니다",
     "level": 0,
-    "id" :  0,
+    "id" :  1,
     "attackPower": 5.0,
     "magicPower": 5.0,
     "speed": 5.0,

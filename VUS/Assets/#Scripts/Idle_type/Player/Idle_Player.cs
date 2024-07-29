@@ -12,7 +12,7 @@ public class Idle_Player : MonoBehaviour
     public float attackSpeed { get; private set; }      //공격속도
     public float speed { get; private set; }            //이동속도
     public float hp { get; private set; }               //현재 체력
-    public float maxHp {  get; private set; }           //최대 체력
+    public float maxHp { get; private set; }           //최대 체력
     public float mp { get; private set; }               //현재 마나
     public float maxMp { get; private set; }            //최대 마나
     public float exp { get; private set; }              //현재 경험치

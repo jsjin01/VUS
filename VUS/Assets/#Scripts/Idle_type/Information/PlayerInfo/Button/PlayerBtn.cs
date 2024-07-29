@@ -16,7 +16,7 @@ public class PlayerBtn : MonoBehaviour
 
     public void Attritbute() //능력치창 여는 버튼
     {
-        for (int i = 0; i < funtionWindow.Length; i++)
+        for(int i = 0; i < funtionWindow.Length; i++)
         {
             funtionWindow[i].SetActive(false);
         }
@@ -24,7 +24,7 @@ public class PlayerBtn : MonoBehaviour
     }
     public void Equipment() //장비창 여는 버튼
     {
-        for (int i = 0; i < funtionWindow.Length; i++)
+        for(int i = 0; i < funtionWindow.Length; i++)
         {
             funtionWindow[i].SetActive(false);
         }
@@ -33,7 +33,7 @@ public class PlayerBtn : MonoBehaviour
     }
     public void Skill() //스킬창 여는 버튼
     {
-        for (int i = 0; i < funtionWindow.Length; i++)
+        for(int i = 0; i < funtionWindow.Length; i++)
         {
             funtionWindow[i].SetActive(false);
         }
@@ -41,7 +41,7 @@ public class PlayerBtn : MonoBehaviour
     }
     public void Challenge() //도전창 여는 버튼
     {
-        for (int i = 0; i < funtionWindow.Length; i++)
+        for(int i = 0; i < funtionWindow.Length; i++)
         {
             funtionWindow[i].SetActive(false);
         }

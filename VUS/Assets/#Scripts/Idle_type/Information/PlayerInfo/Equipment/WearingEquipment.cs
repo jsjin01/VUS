@@ -7,12 +7,21 @@ using UnityEngine.UI;
 public class WearingEquipment : MonoBehaviour
 {
     EquipmentData equipmentData;            //착용한 장비의 데이터
-    [SerializeField]EQUIPMENTTYPE equipType;//해당 칸의 무기 타입
+    [SerializeField] EQUIPMENTTYPE equipType;//해당 칸의 무기 타입
     [SerializeField] Sprite[] sprite;       //장비들의 이미지 
     [SerializeField] Image img;             //해당 칸 이미지 변환 
     [SerializeField] string path;           //해당 칸의 경로 설정
     [SerializeField] GameObject wearingEquipInfo;
     [SerializeField] GameObject Blocker;
+
+    [Header("Cloth,Ammor,Pant 전용")]
+    [SerializeField] Image centerImg; //가운데 이미지
+    [SerializeField] Image rightImg; //오른쪽 이미지
+    [SerializeField] Image leftImg;   //왼쪽 이미지
+    //장비들의 이미지
+    [SerializeField] Sprite[] centerSprite;
+    [SerializeField] Sprite[] rightSprite;
+    [SerializeField] Sprite[] leftSprite;
     private void Start()
     {
         DataLoad();
@@ -22,21 +31,46 @@ public class WearingEquipment : MonoBehaviour
     {
         string filePath = Path.Combine(Application.dataPath, path);
 
-        if (File.Exists(filePath))
+        if(File.Exists(filePath))
         {
             // JSON 파일 읽기
             string jsonData = File.ReadAllText(filePath);
 
-            // JSON 데이터를 EquipmentData 객체로 변환
+            // JSON 데이터를 EquipmentData 객체로 변환 
             equipmentData = JsonUtility.FromJson<EquipmentData>(jsonData);
-            img.sprite = sprite[equipmentData.id];
+
+            //이미지 적용
+            if(equipType == EQUIPMENTTYPE.ARMOR || equipType == EQUIPMENTTYPE.CLOTH)//이미지를 3개를 합쳐야하는 경우
+            {
+                centerImg.sprite = centerSprite[equipmentData.id];
+                rightImg.sprite = rightSprite[equipmentData.id];
+                leftImg.sprite = leftSprite[equipmentData.id];
+
+                SizeControl(ref centerImg);
+                SizeControl(ref rightImg);
+                SizeControl(ref leftImg);
+            }
+            else if(equipType == EQUIPMENTTYPE.PANT)//이미지를 2개를 합쳐야하는 경우 
+            {
+                rightImg.sprite = rightSprite[equipmentData.id];
+                leftImg.sprite = leftSprite[equipmentData.id];
+
+                SizeControl(ref rightImg);
+                SizeControl(ref leftImg);
+            }
+            else//나머지 경우
+            {
+                img.sprite = sprite[equipmentData.id];
+
+                SizeControl(ref img);
+            }
         }
         else
         {
             Debug.LogError("Cannot find JSON file at " + filePath);
         }
     }
-    
+
     public void ShowButton()//데이터를 보여주는 버튼 
     {
         Blocker.GetComponent<Canvas>().sortingOrder += 1;
@@ -46,18 +80,18 @@ public class WearingEquipment : MonoBehaviour
             $"{((equipmentData.attackPower != 0) ? "공격력 : + " + equipmentData.attackPower + "\n" : null)}" +
             $"{((equipmentData.magicPower != 0) ? "주문력 : + " + equipmentData.magicPower + "\n" : null)}" +
             $"{((equipmentData.speed != 0) ? "이동 속도 : + " + equipmentData.speed + "\n" : null)}" +
-            $"{((equipmentData.maxHp != 0) ? "육체강화 : + " + equipmentData.maxHp/10 + "\n" : null)}" +
+            $"{((equipmentData.maxHp != 0) ? "육체강화 : + " + equipmentData.maxHp / 10 + "\n" : null)}" +
             $"{((equipmentData.cri != 0) ? "치명타 : + " + equipmentData.cri + "\n" : null)}" +
             $"{((equipmentData.criDmg != 0) ? "치명타 데미지 : + " + equipmentData.criDmg + "\n" : null)}";
         SynergySort();
     }
 
-    void SynergySort()
+    void SynergySort() //시너지 정렬하는 함수 
     {
-        switch (equipmentData.synergy)
+        switch(equipmentData.synergy)
         {
             case EQUIPMENTSYNERGY.NONE:
-                for (int i = 0; i < 6; i++)
+                for(int i = 0; i < 6; i++)
                 {
                     wearingEquipInfo.transform.GetChild(6).GetChild(i).GetComponent<Text>().text = null;
                 }
@@ -65,5 +99,19 @@ public class WearingEquipment : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    void SizeControl(ref Image img) //들어간 이미지 크기에 따라 다르게 설정 
+    {
+        if(img.sprite == null)
+        {
+            return;
+        }
+
+        Texture2D spriteImg = img.sprite.texture; //이미지 크기 추출하기 
+        float spriteImgWidth = spriteImg.width;
+        float spriteImgHeight = spriteImg.height;
+
+        img.GetComponent<RectTransform>().sizeDelta = new Vector2 (spriteImgWidth, spriteImgHeight);
     }
 }
