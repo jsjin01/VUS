@@ -4,6 +4,18 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+[System.Serializable]
+public class MeasureData
+{
+    public int id;
+    public int width;
+    public int height;
+
+    public int armWidth;
+    public int armHeight;
+}
+
 public class WearingEquipment : MonoBehaviour
 {
     EquipmentData equipmentData;            //착용한 장비의 데이터
@@ -22,8 +34,12 @@ public class WearingEquipment : MonoBehaviour
     [SerializeField] Sprite[] centerSprite;
     [SerializeField] Sprite[] rightSprite;
     [SerializeField] Sprite[] leftSprite;
+
+    List<MeasureData> MeasureDataList;
+
     private void Start()
     {
+        MeasureDataByType(equipType);
         DataLoad();
     }
 
@@ -46,9 +62,14 @@ public class WearingEquipment : MonoBehaviour
                 rightImg.sprite = rightSprite[equipmentData.id];
                 leftImg.sprite = leftSprite[equipmentData.id];
 
-                SizeControl(ref centerImg);
-                SizeControl(ref rightImg);
-                SizeControl(ref leftImg);
+                //SizeControl(ref centerImg);
+                //SizeControl(ref rightImg);
+                //SizeControl(ref leftImg);
+
+                MeasureBodySizeControl(ref centerImg, equipmentData.id);
+                MeasureArmSizeControl(ref rightImg, equipmentData.id);
+                MeasureArmSizeControl(ref leftImg, equipmentData.id);
+
             }
             else if(equipType == EQUIPMENTTYPE.PANT)//이미지를 2개를 합쳐야하는 경우 
             {
@@ -112,6 +133,62 @@ public class WearingEquipment : MonoBehaviour
         float spriteImgWidth = spriteImg.width;
         float spriteImgHeight = spriteImg.height;
 
-        img.GetComponent<RectTransform>().sizeDelta = new Vector2 (spriteImgWidth, spriteImgHeight);
+        img.GetComponent<RectTransform>().sizeDelta = new Vector2(spriteImgWidth, spriteImgHeight);
     }
+
+    void MeasureDataByType(EQUIPMENTTYPE type)//타입(Armor, Cloth, Pants)에 따른 데이터 값 로딩
+    {
+        string jsonData = "";
+
+        switch(type)
+        {
+            case EQUIPMENTTYPE.ARMOR:
+                jsonData = File.ReadAllText("Assets/#Scripts/Idle_type/Information/PlayerInfo/Equipment/ALLEquipmentInfo/EquiptmentMeasure/ArmorMeasure.json");
+                break;
+            case EQUIPMENTTYPE.CLOTH:
+                jsonData = File.ReadAllText("Assets/#Scripts/Idle_type/Information/PlayerInfo/Equipment/ALLEquipmentInfo/EquiptmentMeasure/ClothMeasure.json");
+                break;
+            case EQUIPMENTTYPE.PANT:
+                jsonData = File.ReadAllText("Assets/#Scripts/Idle_type/Information/PlayerInfo/Equipment/ALLEquipmentInfo/EquiptmentMeasure/PantsMeasure.json");
+                break;
+            default:
+                return;
+        }
+
+        MeasureData[] dataArray = JsonHelper.FromJson<MeasureData>(jsonData);
+        MeasureDataList = new List<MeasureData>(dataArray);
+    }
+
+    void MeasureBodySizeControl(ref Image img, int index) //측정데이터에 따른 이미지 크기 설정(Body) 
+    {
+        MeasureData data = GetMeasureDataById(index);
+        img.GetComponent<RectTransform>().sizeDelta = new Vector2(data.width * 5, data.height * 5);
+    }
+
+    void MeasureArmSizeControl(ref Image img, int index) //측정데이터에 따른 이미지 크기 설정(Arm && Pants) 
+    {
+        MeasureData data = GetMeasureDataById(index);
+        img.GetComponent<RectTransform>().sizeDelta = new Vector2(data.armWidth * 5, data.armHeight * 5);
+    }
+
+    MeasureData GetMeasureDataById(int id) // 특정 ID에 해당하는 데이터를 검색
+    {
+        return MeasureDataList.Find(data => data.id == id);
+    }
+    public static class JsonHelper //Json 배열을 객체 배열로 변환하는 클래스 => 쉽게 말해서 json에 배열 사용하기 위해서 사용
+    {
+        public static T[] FromJson<T>(string json)
+        {
+            string newJson = "{\"array\":" + json + "}";
+            Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(newJson);
+            return wrapper.array;
+        }
+
+        [System.Serializable]
+        private class Wrapper<T>
+        {
+            public T[] array;
+        }
+    }
+
 }

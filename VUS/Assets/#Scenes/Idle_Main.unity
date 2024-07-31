@@ -13147,7 +13147,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipType: 1
-  sprite: []
+  sprite:
+  - {fileID: 0}
+  - {fileID: -3992137426342128158, guid: 500949c32f0256e488a645483a722ff9, type: 3}
   img: {fileID: 0}
   path: '#SaveJSON/WearingEquipment/Armor.json'
   wearingEquipInfo: {fileID: 1163883328}
