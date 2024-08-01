@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IceBall
   m_EditorClassIdentifier: 
   skilltype: 0
-  Skillid: 0
+  Skillid: 1
   Damage: 20
   Mana: 10
   SkillName: "\uD30C\uC774\uC5B4\uBCFC"

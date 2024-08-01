@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,6 @@ public class SKillDesc : MonoBehaviour
 {
     public SkillData Data;
     Image icon;
-
     public int Price;
     public int State;
     public string Name;
@@ -16,16 +16,16 @@ public class SKillDesc : MonoBehaviour
     private void Awake()
     {
         icon = GetComponent<Image>();
-
-
-        Price = Data.Price;
-        State = 0;
-
-        icon.sprite = Data.SkillIcon;
-        
-        Name = Data.SkillName;
-        Desc = Data.SkillDesc;
     }
 
+    public void GetSkillid(int skillid)
+    {
+        switch (skillid)
+        {
+            case 0:
+
+                break;
+        }
+    }
 
 }
