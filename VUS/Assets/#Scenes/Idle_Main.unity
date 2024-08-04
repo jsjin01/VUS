@@ -1788,6 +1788,7 @@ GameObject:
   - component: {fileID: 80863622}
   - component: {fileID: 80863621}
   - component: {fileID: 80863620}
+  - component: {fileID: 80863623}
   m_Layer: 5
   m_Name: Pant
   m_TagString: Untagged
@@ -1859,7 +1860,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 80863621}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 80863623}
+        m_TargetAssemblyTypeName: WearingEquipment, Assembly-CSharp
+        m_MethodName: ShowButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &80863621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1898,6 +1911,45 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80863618}
   m_CullTransparentMesh: 1
+--- !u!114 &80863623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80863618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c7ae726e90e76d42bfe0f930131aeef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipType: 3
+  sprite: []
+  img: {fileID: 0}
+  path: '#SaveJSON/WearingEquipment/Pant.json'
+  wearingEquipInfo: {fileID: 1163883328}
+  Blocker: {fileID: 1495388780}
+  centerImg: {fileID: 0}
+  rightImg: {fileID: 617948442}
+  leftImg: {fileID: 1380579215}
+  centerSprite:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  rightSprite:
+  - {fileID: 0}
+  - {fileID: 6436355157659965594, guid: becf81d60330ab24aa8484175c598415, type: 3}
+  - {fileID: -1701842369826841683, guid: 26012a7d8162cce4183e4cacaaec1351, type: 3}
+  - {fileID: 4488402338830534301, guid: 5ecf81ea1d353f1478c5a66a6873ab2c, type: 3}
+  - {fileID: 142443694952996111, guid: 8801397187b969e4b8ee86fc6f46da91, type: 3}
+  leftSprite:
+  - {fileID: 0}
+  - {fileID: 8616813021583795274, guid: becf81d60330ab24aa8484175c598415, type: 3}
+  - {fileID: -6657482867516515422, guid: 26012a7d8162cce4183e4cacaaec1351, type: 3}
+  - {fileID: 2710371681560268619, guid: 5ecf81ea1d353f1478c5a66a6873ab2c, type: 3}
+  - {fileID: 2227563860517246555, guid: 8801397187b969e4b8ee86fc6f46da91, type: 3}
 --- !u!1 &96333991
 GameObject:
   m_ObjectHideFlags: 0
@@ -9231,6 +9283,7 @@ GameObject:
   - component: {fileID: 653027487}
   - component: {fileID: 653027486}
   - component: {fileID: 653027485}
+  - component: {fileID: 653027488}
   m_Layer: 5
   m_Name: L_WEAPON
   m_TagString: Untagged
@@ -9301,7 +9354,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 653027486}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 653027488}
+        m_TargetAssemblyTypeName: WearingEquipment, Assembly-CSharp
+        m_MethodName: ShowButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &653027486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9340,6 +9405,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653027483}
   m_CullTransparentMesh: 1
+--- !u!114 &653027488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653027483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c7ae726e90e76d42bfe0f930131aeef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipType: 6
+  sprite:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: a7c95afa19d69ae4a8ac7757f295a44e, type: 3}
+  - {fileID: 21300000, guid: 2b350c59f0f90b543a0ba51a7b60b119, type: 3}
+  - {fileID: 21300000, guid: 610df460cafca5645bfbe407ef8dfe88, type: 3}
+  - {fileID: 21300000, guid: 15c29b5d1555ebe43b0551f64fcd5cb7, type: 3}
+  - {fileID: 21300000, guid: 1cd510807bbe85d499100967579e5665, type: 3}
+  - {fileID: 21300000, guid: 1f0b9f434de9903429bf273ca74eeff5, type: 3}
+  - {fileID: 21300000, guid: 09e003d31388695438bab3f9f265d5a9, type: 3}
+  - {fileID: 21300000, guid: f301c75ea0285044ca584386c4d804d9, type: 3}
+  - {fileID: 21300000, guid: dc16943c820fa3a4f89a5ba948fd360c, type: 3}
+  - {fileID: 21300000, guid: 9c0d2fca93b230344a4c206b765e9081, type: 3}
+  - {fileID: 21300000, guid: 7b827b20e31400d4a9438a8f4ca5cbc7, type: 3}
+  - {fileID: 21300000, guid: 30113af32c03adb4e810180e796821b5, type: 3}
+  img: {fileID: 467118974}
+  path: '#SaveJSON/WearingEquipment/L_Weapon.json'
+  wearingEquipInfo: {fileID: 1163883328}
+  Blocker: {fileID: 1495388780}
+  centerImg: {fileID: 0}
+  rightImg: {fileID: 0}
+  leftImg: {fileID: 0}
+  centerSprite: []
+  rightSprite: []
+  leftSprite: []
 --- !u!1 &656115081
 GameObject:
   m_ObjectHideFlags: 0
@@ -11944,7 +12046,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 876779768}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 876779770}
+        m_TargetAssemblyTypeName: WearingEquipment, Assembly-CSharp
+        m_MethodName: ShowButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &876779768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12006,10 +12120,46 @@ MonoBehaviour:
   leftImg: {fileID: 411913607}
   centerSprite:
   - {fileID: 0}
+  - {fileID: -1051182729592144375, guid: 79230db1a2a90aa4aa47c39cd3f0d7d6, type: 3}
+  - {fileID: 6828881972621389015, guid: c219f51a96bfc5e49871229c9b4c6c0d, type: 3}
+  - {fileID: -3618802667364733500, guid: 79eeb37d04f805d48af49a348aef1a19, type: 3}
+  - {fileID: -5138849381010601345, guid: 5ee0590545f17a641a3b0204a8299186, type: 3}
+  - {fileID: -401103313191006133, guid: 942b02e183f413f429bc98711c0a37b7, type: 3}
+  - {fileID: 2949992012896409553, guid: 46f7d4a15b08e85498f551acc23d1f53, type: 3}
+  - {fileID: -6899643311455125392, guid: 9b86c06c7f8f89b459f42494812bb8b5, type: 3}
+  - {fileID: -6287698273869241847, guid: 98d42ae48dc82fc4ab2e21c7701e1c45, type: 3}
+  - {fileID: -6632709640309470192, guid: 19b2ce19eaa637e48be7f99b5e9c7a73, type: 3}
+  - {fileID: 9071153741043795472, guid: 15efcc777664d3142b1e7dd191e3a98c, type: 3}
+  - {fileID: -386983977432367671, guid: 7240642442f1b5f4f91408b1343430b2, type: 3}
+  - {fileID: 7896191252196906362, guid: d93bb77b445543448b128fc6e6f145b1, type: 3}
   rightSprite:
   - {fileID: 0}
+  - {fileID: -5314646427713862164, guid: 79230db1a2a90aa4aa47c39cd3f0d7d6, type: 3}
+  - {fileID: -2432274809877799677, guid: c219f51a96bfc5e49871229c9b4c6c0d, type: 3}
+  - {fileID: -8202439237598021607, guid: 79eeb37d04f805d48af49a348aef1a19, type: 3}
+  - {fileID: -9059333892809613461, guid: 5ee0590545f17a641a3b0204a8299186, type: 3}
+  - {fileID: 471798231154425545, guid: 942b02e183f413f429bc98711c0a37b7, type: 3}
+  - {fileID: 7891202649814613956, guid: 46f7d4a15b08e85498f551acc23d1f53, type: 3}
+  - {fileID: -7096297032323124305, guid: 9b86c06c7f8f89b459f42494812bb8b5, type: 3}
+  - {fileID: 443023699765824805, guid: 98d42ae48dc82fc4ab2e21c7701e1c45, type: 3}
+  - {fileID: 0}
+  - {fileID: -3137994370387717294, guid: 15efcc777664d3142b1e7dd191e3a98c, type: 3}
+  - {fileID: -3501919001399007183, guid: 7240642442f1b5f4f91408b1343430b2, type: 3}
+  - {fileID: 142190170752318335, guid: d93bb77b445543448b128fc6e6f145b1, type: 3}
   leftSprite:
   - {fileID: 0}
+  - {fileID: 918163296319358687, guid: 79230db1a2a90aa4aa47c39cd3f0d7d6, type: 3}
+  - {fileID: 5498782995666421484, guid: c219f51a96bfc5e49871229c9b4c6c0d, type: 3}
+  - {fileID: -8675011627427599730, guid: 79eeb37d04f805d48af49a348aef1a19, type: 3}
+  - {fileID: 5974945691945990517, guid: 5ee0590545f17a641a3b0204a8299186, type: 3}
+  - {fileID: -3794662817809912853, guid: 942b02e183f413f429bc98711c0a37b7, type: 3}
+  - {fileID: 2371925709717891883, guid: 46f7d4a15b08e85498f551acc23d1f53, type: 3}
+  - {fileID: -8662432971830130642, guid: 9b86c06c7f8f89b459f42494812bb8b5, type: 3}
+  - {fileID: 4101217945439343506, guid: 98d42ae48dc82fc4ab2e21c7701e1c45, type: 3}
+  - {fileID: 0}
+  - {fileID: -4607344544876785824, guid: 15efcc777664d3142b1e7dd191e3a98c, type: 3}
+  - {fileID: 6712671587012831569, guid: 7240642442f1b5f4f91408b1343430b2, type: 3}
+  - {fileID: -9035144544001989217, guid: d93bb77b445543448b128fc6e6f145b1, type: 3}
 --- !u!1 &884894795
 GameObject:
   m_ObjectHideFlags: 0
@@ -14120,7 +14270,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1004985502}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1004985504}
+        m_TargetAssemblyTypeName: WearingEquipment, Assembly-CSharp
+        m_MethodName: ShowButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1004985502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14245,7 +14407,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.9455, y: 558.0569}
+  m_AnchoredPosition: {x: -5.9455, y: 558.057}
   m_SizeDelta: {x: 36.637, y: 1196.74}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1008963973
@@ -14614,7 +14776,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 619786491}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.5334475
+  m_Size: 0.5331778
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -24151,6 +24313,7 @@ GameObject:
   - component: {fileID: 1969708406}
   - component: {fileID: 1969708405}
   - component: {fileID: 1969708404}
+  - component: {fileID: 1969708407}
   m_Layer: 5
   m_Name: R_Weapon
   m_TagString: Untagged
@@ -24221,7 +24384,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1969708405}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1969708407}
+        m_TargetAssemblyTypeName: WearingEquipment, Assembly-CSharp
+        m_MethodName: ShowButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1969708405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24260,6 +24435,43 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969708402}
   m_CullTransparentMesh: 1
+--- !u!114 &1969708407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969708402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c7ae726e90e76d42bfe0f930131aeef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipType: 5
+  sprite:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: a7c95afa19d69ae4a8ac7757f295a44e, type: 3}
+  - {fileID: 21300000, guid: 2b350c59f0f90b543a0ba51a7b60b119, type: 3}
+  - {fileID: 21300000, guid: 610df460cafca5645bfbe407ef8dfe88, type: 3}
+  - {fileID: 21300000, guid: 15c29b5d1555ebe43b0551f64fcd5cb7, type: 3}
+  - {fileID: 21300000, guid: 1cd510807bbe85d499100967579e5665, type: 3}
+  - {fileID: 21300000, guid: 1f0b9f434de9903429bf273ca74eeff5, type: 3}
+  - {fileID: 21300000, guid: 09e003d31388695438bab3f9f265d5a9, type: 3}
+  - {fileID: 21300000, guid: f301c75ea0285044ca584386c4d804d9, type: 3}
+  - {fileID: 21300000, guid: dc16943c820fa3a4f89a5ba948fd360c, type: 3}
+  - {fileID: 21300000, guid: 9c0d2fca93b230344a4c206b765e9081, type: 3}
+  - {fileID: 21300000, guid: 7b827b20e31400d4a9438a8f4ca5cbc7, type: 3}
+  - {fileID: 21300000, guid: 30113af32c03adb4e810180e796821b5, type: 3}
+  img: {fileID: 1227114973}
+  path: '#SaveJSON/WearingEquipment/R_Weapon.json'
+  wearingEquipInfo: {fileID: 1163883328}
+  Blocker: {fileID: 1495388780}
+  centerImg: {fileID: 0}
+  rightImg: {fileID: 0}
+  leftImg: {fileID: 0}
+  centerSprite: []
+  rightSprite: []
+  leftSprite: []
 --- !u!1 &1979194907
 GameObject:
   m_ObjectHideFlags: 0

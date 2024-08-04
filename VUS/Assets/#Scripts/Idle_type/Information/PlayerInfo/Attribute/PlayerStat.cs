@@ -28,7 +28,7 @@ public class PlayerStats : MonoBehaviour
 
         UpdateUI();
 
-        levelUpButton.onClick.AddListener(LevelUp);
+        //levelUpButton.onClick.AddListener(LevelUp);
     }
 
     private void UpdateUI()

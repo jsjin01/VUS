@@ -62,10 +62,6 @@ public class WearingEquipment : MonoBehaviour
                 rightImg.sprite = rightSprite[equipmentData.id];
                 leftImg.sprite = leftSprite[equipmentData.id];
 
-                //SizeControl(ref centerImg);
-                //SizeControl(ref rightImg);
-                //SizeControl(ref leftImg);
-
                 MeasureBodySizeControl(ref centerImg, equipmentData.id);
                 MeasureArmSizeControl(ref rightImg, equipmentData.id);
                 MeasureArmSizeControl(ref leftImg, equipmentData.id);
@@ -76,8 +72,13 @@ public class WearingEquipment : MonoBehaviour
                 rightImg.sprite = rightSprite[equipmentData.id];
                 leftImg.sprite = leftSprite[equipmentData.id];
 
-                SizeControl(ref rightImg);
-                SizeControl(ref leftImg);
+                MeasureArmSizeControl(ref rightImg, equipmentData.id);
+                MeasureArmSizeControl(ref leftImg, equipmentData.id);
+            }
+            else if(equipType == EQUIPMENTTYPE.R_WEAPON || equipType == EQUIPMENTTYPE.L_WEAPON)//무기 착용일 때
+            {
+                img.sprite = sprite[equipmentData.id];
+                MeasureBodySizeControl(ref img, equipmentData.id);
             }
             else//나머지 경우
             {
@@ -133,7 +134,7 @@ public class WearingEquipment : MonoBehaviour
         float spriteImgWidth = spriteImg.width;
         float spriteImgHeight = spriteImg.height;
 
-        img.GetComponent<RectTransform>().sizeDelta = new Vector2(spriteImgWidth, spriteImgHeight);
+        img.GetComponent<RectTransform>().sizeDelta = new Vector2(spriteImgWidth * 4, spriteImgHeight * 4);
     }
 
     void MeasureDataByType(EQUIPMENTTYPE type)//타입(Armor, Cloth, Pants)에 따른 데이터 값 로딩
@@ -151,6 +152,12 @@ public class WearingEquipment : MonoBehaviour
             case EQUIPMENTTYPE.PANT:
                 jsonData = File.ReadAllText("Assets/#Scripts/Idle_type/Information/PlayerInfo/Equipment/ALLEquipmentInfo/EquiptmentMeasure/PantsMeasure.json");
                 break;
+            case EQUIPMENTTYPE.R_WEAPON:
+                jsonData = File.ReadAllText("Assets/#Scripts/Idle_type/Information/PlayerInfo/Equipment/ALLEquipmentInfo/EquiptmentMeasure/WeaponMeasure.json");
+                break;
+            case EQUIPMENTTYPE.L_WEAPON:
+                jsonData = File.ReadAllText("Assets/#Scripts/Idle_type/Information/PlayerInfo/Equipment/ALLEquipmentInfo/EquiptmentMeasure/WeaponMeasure.json");
+                break;
             default:
                 return;
         }
@@ -163,6 +170,10 @@ public class WearingEquipment : MonoBehaviour
     {
         MeasureData data = GetMeasureDataById(index);
         img.GetComponent<RectTransform>().sizeDelta = new Vector2(data.width * 5, data.height * 5);
+        if((equipType == EQUIPMENTTYPE.L_WEAPON || equipType == EQUIPMENTTYPE.R_WEAPON) && (index == 4 || index == 5))
+        {
+            img.GetComponent<RectTransform>().sizeDelta = new Vector2(data.width * 3, data.height * 3);
+        }
     }
 
     void MeasureArmSizeControl(ref Image img, int index) //측정데이터에 따른 이미지 크기 설정(Arm && Pants) 
