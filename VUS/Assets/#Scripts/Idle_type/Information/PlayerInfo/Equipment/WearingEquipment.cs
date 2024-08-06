@@ -73,14 +73,11 @@ public class WearingEquipment : MonoBehaviour
 
                 MeasureArmSizeControl(ref rightImg, equipmentData.id);
                 MeasureArmSizeControl(ref leftImg, equipmentData.id);
-<<<<<<< Updated upstream
             }
             else if(equipType == EQUIPMENTTYPE.R_WEAPON || equipType == EQUIPMENTTYPE.L_WEAPON)//무기 착용일 때
             {
                 img.sprite = sprite[equipmentData.id];
                 MeasureBodySizeControl(ref img, equipmentData.id);
-=======
->>>>>>> Stashed changes
             }
             else//나머지 경우
             {
