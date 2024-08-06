@@ -14892,7 +14892,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0000061989, y: 814.1489}
+  m_AnchoredPosition: {x: -0.0000061989, y: 814.1492}
   m_SizeDelta: {x: 41.184, y: 1440.475}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1008963973
@@ -15082,7 +15082,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: c31fc1717fcf223459ef973d59bc2574, type: 2}
   Desc: {fileID: 5459803847800913161}
-  skilldesc: {fileID: 0}
   SkillId: 0
 --- !u!114 &1010430689
 MonoBehaviour:
@@ -15260,8 +15259,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 619786492}
   m_HandleRect: {fileID: 619786491}
   m_Direction: 2
-  m_Value: 0.00000007496804
-  m_Size: 0.43480518
+  m_Value: -0.00000022490413
+  m_Size: 0.43476573
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -24146,7 +24145,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 678a0ad4be47340d49403da6b930716c, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -34045,11 +34044,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b19a4802ac70ed40bcc68b546e5f41f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: {fileID: 0}
   Price: 0
   State: 0
   Name: 
   Desc: 
+  skillDatas: []
 --- !u!224 &5487002657778409611
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34613,7 +34612,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 5c64cd14aae878148b94eab041ddda1d, type: 2}
   Desc: {fileID: 5459803847800913161}
-  skilldesc: {fileID: 0}
   SkillId: 0
 --- !u!224 &6256090118482343677
 RectTransform:
@@ -36662,6 +36660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Size: 5
   upSizeTime: 0.5
+  skillDatas: []
 --- !u!114 &8623393047310715238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36764,6 +36763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Size: 5
   upSizeTime: 0.5
+  skillDatas: []
 --- !u!114 &8706973240174382626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36926,6 +36926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Size: 5
   upSizeTime: 0.5
+  skillDatas: []
 --- !u!224 &8847825040886000507
 RectTransform:
   m_ObjectHideFlags: 0

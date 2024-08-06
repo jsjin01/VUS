@@ -7,22 +7,27 @@ public class SkillButton : MonoBehaviour
 {
     public SkillData Data;
     public GameObject Desc;
-    public SKillDesc skilldesc;
     Image icon;
 
     public int SkillId;
 
     private void Awake()
-    {       
-       icon = GetComponent<Image>();
-       icon.sprite = Data.SkillIcon;
+    {
+        icon = GetComponent<Image>();
+        icon.sprite = Data.SkillIcon;
         SkillId = Data.Skillid;
         Desc.SetActive(false);
     }
 
     public void OnCLick()
     {
-        Desc.SetActive(true);
-        skilldesc.GetSkillid(SkillId);
+        if(Desc != null)
+        {
+            Desc.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("Desc is not assigned in the SkillButton script!");
+        }
     }
 }

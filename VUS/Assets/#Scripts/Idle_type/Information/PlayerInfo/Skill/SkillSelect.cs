@@ -7,11 +7,17 @@ public class SkillSelect : MonoBehaviour
 {
     float time = 0;
     public float Size = 5;
+    private int state;
 
     public float upSizeTime = 0.5f;
 
-    SkillData Data;
+
+    [SerializeField] // 유니티 에디터에서 보이도록 배열을 직렬화
+    private SkillData[] skillDatas;
+
+
     Image icon;
+
 
     private void Start()
     {
@@ -20,24 +26,24 @@ public class SkillSelect : MonoBehaviour
 
     public void SkillEquip(int state)
     {
-        if (state == 1)
+        if(state == 1)//장착버튼 누르기 가능
         {
             CanEquip();
         }
-        else
+        else//불가능
         {
             return;
         }
     }
 
-    public void CanEquip()
+    public void CanEquip()//장착가능 상태를 표시하기 위해서 크기 변화주기
     {
-        if(time <= upSizeTime) 
-        { 
+        if(time <= upSizeTime)
+        {
             transform.localScale = Vector3.one * (1 + Size + time);
         }
-        else if(time <= upSizeTime * 2) 
-        { 
+        else if(time <= upSizeTime * 2)
+        {
             transform.localScale = Vector3.one * (2 * Size * upSizeTime + 1 - time * Size);
         }
         else
@@ -47,11 +53,25 @@ public class SkillSelect : MonoBehaviour
         time += Time.deltaTime;
     }
 
-    public void OnClick(int state)
+    public void OnClick()
     {
         time = 0;
         state = 0;
-        icon.sprite = Data.SkillIcon;
+        SkillEquip(state);
+    }
+
+
+    public void GetSkillid(int skillid)
+    {
+        // skillDatas 배열에서 일치하는 Skillid를 찾기
+        foreach(var skillData in skillDatas)
+        {
+            if(skillData.Skillid == skillid)
+            {
+                icon.sprite = skillData.SkillIcon;
+                break;
+            }
+        }
     }
 
 }

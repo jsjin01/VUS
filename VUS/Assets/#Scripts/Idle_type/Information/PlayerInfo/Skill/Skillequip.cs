@@ -5,12 +5,16 @@ using UnityEngine;
 public class Skillequip : MonoBehaviour
 {
     public GameObject Desc;
-    SkillSelect equip;
+    SkillButton button;
+    SkillSelect select;
+    int skillid;
 
     public void OnClick()
     {
+        skillid = button.SkillId;
         Desc.SetActive(false);
-        equip.SkillEquip(1);
+        select.SkillEquip(1);
+        select.GetSkillid(skillid);
 
     }
 }
