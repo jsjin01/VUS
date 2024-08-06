@@ -5,26 +5,21 @@ using UnityEngine.UI;
 
 public class SkillDesc : MonoBehaviour
 {
-    private Image icon;
+    [SerializeField] Image icon;
     public int Price;
     public int State;
     public string Name;
     [TextArea]
     public string Desc;
-    SkillButton button;
+    //SkillButton button;
     int skillid;
 
     [SerializeField] // 유니티 에디터에서 보이도록 배열을 직렬화
     private SkillData[] skillDatas;
 
-    private void Awake()
+    public void GetSkillid(GameObject gameObject)
     {
-        icon = GetComponent<Image>();
-    }
-
-    public void GetSkillid()
-    {
-        skillid = button.SkillId;
+        skillid = gameObject.GetComponent<SkillButton>().SkillId;
         // skillDatas 배열에서 일치하는 Skillid를 찾기
         foreach (var skillData in skillDatas)
         {

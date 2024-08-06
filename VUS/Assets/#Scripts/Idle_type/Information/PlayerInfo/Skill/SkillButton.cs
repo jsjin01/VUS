@@ -11,13 +11,13 @@ public class SkillButton : MonoBehaviour
     Image icon;
 
     public int SkillId;
-
-    private void Awake()
+    private void OnEnable()
     {
         icon = GetComponent<Image>();
         icon.sprite = Data.SkillIcon;
         SkillId = Data.Skillid;
         Desc.SetActive(false);
+        skilldesc = transform.parent.parent.parent.parent.GetChild(4).GetComponent<SkillDesc>();
     }
 
     public void OnCLick()
@@ -25,7 +25,8 @@ public class SkillButton : MonoBehaviour
         if(Desc != null)
         {
             Desc.SetActive(true);
-            skilldesc.GetSkillid();
+            Debug.Log(skilldesc);
+            skilldesc.GetSkillid(gameObject);
         }
         else
         {
