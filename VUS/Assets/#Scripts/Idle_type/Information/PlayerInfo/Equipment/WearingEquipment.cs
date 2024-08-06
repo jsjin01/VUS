@@ -36,7 +36,6 @@ public class WearingEquipment : MonoBehaviour
     [SerializeField] Sprite[] leftSprite;
 
     List<MeasureData> MeasureDataList;
-
     private void Start()
     {
         MeasureDataByType(equipType);
@@ -95,8 +94,86 @@ public class WearingEquipment : MonoBehaviour
 
     public void ShowButton()//데이터를 보여주는 버튼 
     {
+        //if(equipmentData.name == "")
+        //{
+        //    return;
+        //}
         Blocker.GetComponent<Canvas>().sortingOrder += 1;
         wearingEquipInfo.SetActive(true);
+
+        //img 변경
+        if(equipType == EQUIPMENTTYPE.ARMOR || equipType == EQUIPMENTTYPE.CLOTH)//이미지를 3개를 합쳐야하는 경우
+        {
+            wearingEquipInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
+            wearingEquipInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
+            wearingEquipInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(false);
+
+            Image center = wearingEquipInfo.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Image>();
+            Image right = wearingEquipInfo.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<Image>();
+            Image left = wearingEquipInfo.transform.GetChild(1).GetChild(1).GetChild(2).GetComponent<Image>();
+
+            center.sprite = centerSprite[equipmentData.id];
+            right.sprite = rightSprite[equipmentData.id];
+            left.sprite = leftSprite[equipmentData.id];
+
+            MeasureBodySizeControl(ref center, equipmentData.id);
+            MeasureArmSizeControl(ref right, equipmentData.id);
+            MeasureArmSizeControl(ref left, equipmentData.id);
+
+            center.GetComponent<RectTransform>().sizeDelta *= 1.2f;
+            right.GetComponent<RectTransform>().sizeDelta *= 1.2f;
+            left.GetComponent<RectTransform>().sizeDelta *= 1.2f;
+
+        }
+        else if(equipType == EQUIPMENTTYPE.PANT)//이미지를 2개를 합쳐야하는 경우 
+        {
+            wearingEquipInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
+            wearingEquipInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(true);
+            wearingEquipInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(false);
+
+            Image right = wearingEquipInfo.transform.GetChild(1).GetChild(2).GetChild(0).GetComponent<Image>();
+            Image left = wearingEquipInfo.transform.GetChild(1).GetChild(2).GetChild(1).GetComponent<Image>();
+
+            right.sprite = rightSprite[equipmentData.id];
+            left.sprite = leftSprite[equipmentData.id];
+
+            MeasureArmSizeControl(ref right, equipmentData.id);
+            MeasureArmSizeControl(ref left, equipmentData.id);
+
+            right.GetComponent<RectTransform>().sizeDelta *= 1.5f;
+            left.GetComponent<RectTransform>().sizeDelta *= 1.5f;
+
+        }
+        else if(equipType == EQUIPMENTTYPE.R_WEAPON || equipType == EQUIPMENTTYPE.L_WEAPON)//무기 착용일 때
+        {
+            wearingEquipInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
+            wearingEquipInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
+            wearingEquipInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(true);
+
+            Image center = wearingEquipInfo.transform.GetChild(1).GetChild(3).GetChild(0).GetComponent<Image>();
+
+            center.sprite = sprite[equipmentData.id];
+
+            MeasureBodySizeControl(ref center, equipmentData.id);
+
+            center.GetComponent<RectTransform>().sizeDelta *= 1.2f;
+
+        }
+        else//나머지 경우
+        {
+            wearingEquipInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
+            wearingEquipInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
+            wearingEquipInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(true);
+
+            Image center = wearingEquipInfo.transform.GetChild(1).GetChild(3).GetChild(0).GetComponent<Image>();
+
+            center.sprite = sprite[equipmentData.id];
+
+            SizeControl(ref center);
+
+            center.GetComponent<RectTransform>().sizeDelta *= 1.2f;
+        }
+
         wearingEquipInfo.transform.GetChild(2).GetComponent<Text>().text = equipmentData.name;
         wearingEquipInfo.transform.GetChild(5).GetComponentInChildren<Text>().text =
             $"{((equipmentData.attackPower != 0) ? "공격력 : + " + equipmentData.attackPower + "\n" : null)}" +
@@ -169,7 +246,7 @@ public class WearingEquipment : MonoBehaviour
     void MeasureBodySizeControl(ref Image img, int index) //측정데이터에 따른 이미지 크기 설정(Body) 
     {
         MeasureData data = GetMeasureDataById(index);
-        img.GetComponent<RectTransform>().sizeDelta = new Vector2(data.width * 5, data.height * 5);
+        img.GetComponent<RectTransform>().sizeDelta = new Vector2(data.width  * 5, data.height * 5);
         if((equipType == EQUIPMENTTYPE.L_WEAPON || equipType == EQUIPMENTTYPE.R_WEAPON) && (index == 4 || index == 5))
         {
             img.GetComponent<RectTransform>().sizeDelta = new Vector2(data.width * 3, data.height * 3);
