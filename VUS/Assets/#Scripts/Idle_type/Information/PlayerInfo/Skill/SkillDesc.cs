@@ -9,6 +9,7 @@ public class SkillDesc : MonoBehaviour
     public int Price;
     public int State;
     public string Name;
+    [TextArea]
     public string Desc;
     SkillButton button;
     int skillid;
@@ -19,13 +20,13 @@ public class SkillDesc : MonoBehaviour
     private void Awake()
     {
         icon = GetComponent<Image>();
-        skillid = button.SkillId;
     }
 
     public void GetSkillid()
     {
+        skillid = button.SkillId;
         // skillDatas 배열에서 일치하는 Skillid를 찾기
-        foreach(var skillData in skillDatas)
+        foreach (var skillData in skillDatas)
         {
             if(skillData.Skillid == skillid)
             {

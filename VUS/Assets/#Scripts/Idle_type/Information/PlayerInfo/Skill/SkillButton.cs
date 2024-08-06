@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SkillButton : MonoBehaviour
 {
     public SkillData Data;
+    SkillDesc skilldesc;
     public GameObject Desc;
     Image icon;
 
@@ -24,6 +25,7 @@ public class SkillButton : MonoBehaviour
         if(Desc != null)
         {
             Desc.SetActive(true);
+            skilldesc.GetSkillid();
         }
         else
         {

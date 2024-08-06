@@ -15259,8 +15259,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 619786492}
   m_HandleRect: {fileID: 619786491}
   m_Direction: 2
-  m_Value: -0.00000022490413
-  m_Size: 0.43476573
+  m_Value: -0.00000014993606
+  m_Size: 0.43467218
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -34048,7 +34048,9 @@ MonoBehaviour:
   State: 0
   Name: 
   Desc: 
-  skillDatas: []
+  skillDatas:
+  - {fileID: 11400000, guid: 5c64cd14aae878148b94eab041ddda1d, type: 2}
+  - {fileID: 11400000, guid: c31fc1717fcf223459ef973d59bc2574, type: 2}
 --- !u!224 &5487002657778409611
 RectTransform:
   m_ObjectHideFlags: 0
@@ -36660,7 +36662,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Size: 5
   upSizeTime: 0.5
-  skillDatas: []
+  skillDatas:
+  - {fileID: 11400000, guid: 5c64cd14aae878148b94eab041ddda1d, type: 2}
+  - {fileID: 11400000, guid: c31fc1717fcf223459ef973d59bc2574, type: 2}
 --- !u!114 &8623393047310715238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36763,7 +36767,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Size: 5
   upSizeTime: 0.5
-  skillDatas: []
+  skillDatas:
+  - {fileID: 11400000, guid: 5c64cd14aae878148b94eab041ddda1d, type: 2}
+  - {fileID: 11400000, guid: c31fc1717fcf223459ef973d59bc2574, type: 2}
 --- !u!114 &8706973240174382626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36926,7 +36932,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Size: 5
   upSizeTime: 0.5
-  skillDatas: []
+  skillDatas:
+  - {fileID: 11400000, guid: 5c64cd14aae878148b94eab041ddda1d, type: 2}
+  - {fileID: 11400000, guid: c31fc1717fcf223459ef973d59bc2574, type: 2}
 --- !u!224 &8847825040886000507
 RectTransform:
   m_ObjectHideFlags: 0

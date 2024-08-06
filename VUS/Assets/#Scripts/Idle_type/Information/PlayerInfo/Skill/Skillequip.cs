@@ -10,11 +10,11 @@ public class Skillequip : MonoBehaviour
     int skillid;
 
     public void OnClick()
-    {
-        skillid = button.SkillId;
+    {        
         Desc.SetActive(false);
+        skillid = button.SkillId;
+
         select.SkillEquip(1);
         select.GetSkillid(skillid);
-
     }
 }
