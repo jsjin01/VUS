@@ -36,7 +36,11 @@
     "height": 0,
 
     "armWidth": 4,
+<<<<<<< Updated upstream
     "armHeight": 7
+=======
+    "armHeight": 6
+>>>>>>> Stashed changes
   },
 
   {

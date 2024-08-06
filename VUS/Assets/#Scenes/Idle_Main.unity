@@ -14606,9 +14606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipType: 1
-  sprite:
-  - {fileID: 0}
-  - {fileID: -3992137426342128158, guid: 500949c32f0256e488a645483a722ff9, type: 3}
+  sprite: []
   img: {fileID: 0}
   path: '#SaveJSON/WearingEquipment/Armor.json'
   wearingEquipInfo: {fileID: 1163883328}
@@ -14679,7 +14677,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.9455, y: 558.057}
+  m_AnchoredPosition: {x: -5.9455, y: 558.1212}
   m_SizeDelta: {x: 36.637, y: 1196.74}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1008963973
@@ -15047,8 +15045,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 619786492}
   m_HandleRect: {fileID: 619786491}
   m_Direction: 2
+<<<<<<< Updated upstream
   m_Value: 0
   m_Size: 0.5336857
+=======
+  m_Value: -0.00011505811
+  m_Size: 0.5017786
+>>>>>>> Stashed changes
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
