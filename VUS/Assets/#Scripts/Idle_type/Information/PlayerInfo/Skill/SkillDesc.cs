@@ -10,12 +10,17 @@ public class SkillDesc : MonoBehaviour
     public int State;
     public string Name;
     [TextArea]
-    public string Desc;
+    Text Desc;
     //SkillButton button;
     int skillid;
 
     [SerializeField] // 유니티 에디터에서 보이도록 배열을 직렬화
     private SkillData[] skillDatas;
+
+    private void OnEnable()
+    {
+        Desc = GetComponentInChildren<Text>();
+    }
 
     public void GetSkillid(GameObject gameObject)
     {
@@ -27,7 +32,7 @@ public class SkillDesc : MonoBehaviour
             {
                 // 일치하는 Skillid를 찾으면 해당 스킬 데이터를 사용하여 UI를 설정
                 Name = skillData.SkillName;
-                Desc = skillData.SkillDesc;
+                Desc.text = skillData.SkillDesc;
                 Price = skillData.Price;
                 icon.sprite = skillData.SkillIcon;
 
