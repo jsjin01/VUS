@@ -38,7 +38,7 @@ public class Skillequip : MonoBehaviour
 
                 if (select != null)
                 {
-                    select.SkillEquip(1); // 스킬 장착
+                    select.SkillEquip(1); // 스킬 장착  => 여기서 이미지 문제 발생
                     select.GetSkillid(skillid); // 스킬 ID 설정
                 }
             }
