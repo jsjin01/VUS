@@ -168,7 +168,7 @@ public class WearingEquipment : MonoBehaviour
             center.GetComponent<RectTransform>().sizeDelta *= 1.2f;
         }
 
-        wearingEquipInfo.transform.GetChild(2).GetComponent<Text>().text = equipmentData.name;
+        wearingEquipInfo.transform.GetChild(2).GetComponent<Text>().text = equipmentData.name + $"{((equipmentData.level != 0) ? "+" + equipmentData.level: null)}";
         wearingEquipInfo.transform.GetChild(5).GetComponentInChildren<Text>().text =
             $"{((equipmentData.attackPower != 0) ? "공격력 : + " + equipmentData.attackPower + "\n" : null)}" +
             $"{((equipmentData.magicPower != 0) ? "주문력 : + " + equipmentData.magicPower + "\n" : null)}" +
@@ -194,6 +194,7 @@ public class WearingEquipment : MonoBehaviour
         }
     }
 
+    //사이즈 변환 함수들
     void SizeControl(ref Image img) //들어간 이미지 크기에 따라 다르게 설정 
     {
         if(img.sprite == null)

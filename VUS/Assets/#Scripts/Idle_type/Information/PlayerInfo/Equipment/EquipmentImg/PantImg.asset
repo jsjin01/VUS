@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd8094c7c9e98294cad8fe793a3a25da, type: 3}
+  m_Name: PantImg
+  m_EditorClassIdentifier: 
+  tpye: 3
+  center:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  right:
+  - {fileID: 0}
+  - {fileID: 8616813021583795274, guid: becf81d60330ab24aa8484175c598415, type: 3}
+  - {fileID: -6657482867516515422, guid: 26012a7d8162cce4183e4cacaaec1351, type: 3}
+  - {fileID: 2710371681560268619, guid: 5ecf81ea1d353f1478c5a66a6873ab2c, type: 3}
+  - {fileID: 2227563860517246555, guid: 8801397187b969e4b8ee86fc6f46da91, type: 3}
+  left:
+  - {fileID: 0}
+  - {fileID: 6436355157659965594, guid: becf81d60330ab24aa8484175c598415, type: 3}
+  - {fileID: -1701842369826841683, guid: 26012a7d8162cce4183e4cacaaec1351, type: 3}
+  - {fileID: 4488402338830534301, guid: 5ecf81ea1d353f1478c5a66a6873ab2c, type: 3}
+  - {fileID: 142443694952996111, guid: 8801397187b969e4b8ee86fc6f46da91, type: 3}

@@ -2,7 +2,7 @@
   "name": "",
   "info": "",
   "level": 0,
-  "id": 0,
+  "id": 1,
   "attackPower": 0.0,
   "magicPower": 0.0,
   "speed": 0.0,
@@ -13,7 +13,7 @@
   "cri": 0.0,
   "criDmg": 0.0,
   "upgradeCost": 0,
-  "type": 7,
+  "type": 1,
   "synergy": 0,
   "skill": 0
 }
