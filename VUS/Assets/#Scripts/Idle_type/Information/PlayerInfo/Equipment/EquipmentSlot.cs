@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using static Unity.Collections.AllocatorManager;
 using static WearingEquipment;
 
 public class EquipmentSlot : MonoBehaviour
@@ -22,15 +23,22 @@ public class EquipmentSlot : MonoBehaviour
     [SerializeField] ImageData necklaceImg;
     [SerializeField] ImageData weaponImg;
 
-
     EQUIPMENTTYPE equipType;
     List<MeasureData> MeasureDataList;
 
+    GameObject Blocker;
+    GameObject slotInfo;
+
+
     private void Start()
     {
+        Blocker = GameObject.Find("FullBlocker");
+        slotInfo = GameObject.Find("SlotEquipInfo");
+
+        gameObject.GetComponent<Button>().onClick.AddListener(ShowInfo);//버튼 클릭 
+
         DataLoad();
     }
-
 
     void DataLoad() //데이터 로드 함수
     {
@@ -57,6 +65,12 @@ public class EquipmentSlot : MonoBehaviour
         ImgChange();
     }
 
+
+    void ShowInfo()
+    {
+        Blocker.GetComponent<Canvas>().sortingOrder += 1;
+        slotInfo.SetActive(true);
+    }
     void SortData()//Data에 따라 이미지 나누기
     {
         switch(equipType)
@@ -213,7 +227,6 @@ public class EquipmentSlot : MonoBehaviour
     void MeasureBodySizeControl(ref Image img, int index) //측정데이터에 따른 이미지 크기 설정(Body) 
     {
         MeasureData data = GetMeasureDataById(index);
-        Debug.Log(data);
         img.GetComponent<RectTransform>().sizeDelta = new Vector2(data.width * 5, data.height * 5);
         if((equipType == EQUIPMENTTYPE.L_WEAPON || equipType == EQUIPMENTTYPE.R_WEAPON) && (index == 4 || index == 5))
         {
