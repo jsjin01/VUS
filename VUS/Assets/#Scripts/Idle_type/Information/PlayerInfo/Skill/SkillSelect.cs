@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SkillSelect : MonoBehaviour
 {
     float time = 0;
-    public float Size = 5;
+    public float Size = 1;
     private int state;
 
     public float upSizeTime = 0.5f;
