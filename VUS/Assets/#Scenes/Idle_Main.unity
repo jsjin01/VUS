@@ -14892,7 +14892,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0000061989, y: 814.14905}
+  m_AnchoredPosition: {x: -0.0000061989, y: 814.149}
   m_SizeDelta: {x: 41.184, y: 1440.475}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1008963973
@@ -15260,7 +15260,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 619786491}
   m_Direction: 2
   m_Value: -0.00000007496803
-  m_Size: 0.43480304
+  m_Size: 0.43268275
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -37211,6 +37211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Desc: {fileID: 5459803847800913161}
+  SkillButtonParant: {fileID: 1177254771830093201}
+  SkillSelectParant: {fileID: 1177254771830093201}
 --- !u!1 &9157908676498644260
 GameObject:
   m_ObjectHideFlags: 0
