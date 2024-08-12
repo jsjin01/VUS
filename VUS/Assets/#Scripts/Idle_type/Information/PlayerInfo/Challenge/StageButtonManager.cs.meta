@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 3b65cec118a99f446acd32ef25320fac
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - stageButtonPrefab: {fileID: 2936701015947604677, guid: 7025826afc6d6a948b57a473d7302c51, type: 3}
+  - contentPanel: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
