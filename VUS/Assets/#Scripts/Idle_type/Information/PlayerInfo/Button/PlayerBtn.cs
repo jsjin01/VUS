@@ -13,6 +13,9 @@ public class PlayerBtn : MonoBehaviour
     {
         instance = this;
     }
+    private void Start()
+    {
+    }
 
     public void Attritbute() //능력치창 여는 버튼
     {

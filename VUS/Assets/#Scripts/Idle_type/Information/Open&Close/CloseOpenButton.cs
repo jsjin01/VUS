@@ -21,8 +21,7 @@ public class CloseOpenButton : MonoBehaviour
     }
     void Start()
     {
-        isOpen = !isOpen;
-        CloseAndOpenButton(); //시작과 동시에 반영
+        Open();
     }
 
     public void CloseAndOpenButton()//버튼에 적용되는 함수 

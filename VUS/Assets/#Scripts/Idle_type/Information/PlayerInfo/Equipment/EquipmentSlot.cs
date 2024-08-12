@@ -29,12 +29,25 @@ public class EquipmentSlot : MonoBehaviour
     GameObject Blocker;
     GameObject slotInfo;
 
+    [Header("#장착 아이템")]
+    [SerializeField] GameObject hat;
+    [SerializeField] GameObject armor;
+    [SerializeField] GameObject cloth;
+    [SerializeField] GameObject pant;
+    [SerializeField] GameObject back;
+    [SerializeField] GameObject ring1;
+    [SerializeField] GameObject ring2;
+    [SerializeField] GameObject necklace1;
+    [SerializeField] GameObject necklace2;
+    [SerializeField] GameObject rightWeapon;
+    [SerializeField] GameObject leftWeapon;
+
+
 
     private void Start()
     {
         Blocker = GameObject.Find("FullBlocker");
-        slotInfo = GameObject.Find("SlotEquipInfo");
-
+        slotInfo = transform.parent.parent.parent.parent.parent.parent.GetChild(5).gameObject;
         gameObject.GetComponent<Button>().onClick.AddListener(ShowInfo);//버튼 클릭 
 
         DataLoad();

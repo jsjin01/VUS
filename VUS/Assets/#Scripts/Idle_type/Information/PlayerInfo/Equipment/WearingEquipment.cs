@@ -37,6 +37,22 @@ public class WearingEquipment : MonoBehaviour
 
     List<MeasureData> MeasureDataList;
 
+    [Header("장착 부위")]
+    [SerializeField] GameObject hat;
+    [SerializeField] GameObject armor;
+    [SerializeField] GameObject armorArmR;
+    [SerializeField] GameObject armorArmL;
+    [SerializeField] GameObject cloth;
+    [SerializeField] GameObject clothArmR;
+    [SerializeField] GameObject clothArmL;
+    [SerializeField] GameObject pantR;
+    [SerializeField] GameObject pantL;
+    [SerializeField] GameObject back;
+    [SerializeField] GameObject weaponR;
+    [SerializeField] GameObject weaponL;
+
+
+
     private void Start()
     {
         MeasureDataByType(equipType);
@@ -55,40 +71,79 @@ public class WearingEquipment : MonoBehaviour
             // JSON 데이터를 EquipmentData 객체로 변환 
             equipmentData = JsonUtility.FromJson<EquipmentData>(jsonData);
 
-            //이미지 적용
-            if(equipType == EQUIPMENTTYPE.ARMOR || equipType == EQUIPMENTTYPE.CLOTH)//이미지를 3개를 합쳐야하는 경우
-            {
-                centerImg.sprite = centerSprite[equipmentData.id];
-                rightImg.sprite = rightSprite[equipmentData.id];
-                leftImg.sprite = leftSprite[equipmentData.id];
-
-                MeasureBodySizeControl(ref centerImg, equipmentData.id);
-                MeasureArmSizeControl(ref rightImg, equipmentData.id);
-                MeasureArmSizeControl(ref leftImg, equipmentData.id);
-
-            }
-            else if(equipType == EQUIPMENTTYPE.PANT)//이미지를 2개를 합쳐야하는 경우 
-            {
-                rightImg.sprite = rightSprite[equipmentData.id];
-                leftImg.sprite = leftSprite[equipmentData.id];
-
-                MeasureArmSizeControl(ref rightImg, equipmentData.id);
-                MeasureArmSizeControl(ref leftImg, equipmentData.id);
-            }
-            else if(equipType == EQUIPMENTTYPE.R_WEAPON || equipType == EQUIPMENTTYPE.L_WEAPON)//무기 착용일 때
-            {
-                img.sprite = sprite[equipmentData.id];
-                MeasureBodySizeControl(ref img, equipmentData.id);
-            }
-            else//나머지 경우
-            {
-                img.sprite = sprite[equipmentData.id];
-                SizeControl(ref img);
-            }
+            ImgApply();
         }
         else
         {
             Debug.LogError("Cannot find JSON file at " + filePath);
+        }
+    }
+
+    public void ImgApply() //이미지 적용
+    {
+        if(equipType == EQUIPMENTTYPE.ARMOR || equipType == EQUIPMENTTYPE.CLOTH)//이미지를 3개를 합쳐야하는 경우
+        {
+            centerImg.sprite = centerSprite[equipmentData.id];
+            rightImg.sprite = rightSprite[equipmentData.id];
+            leftImg.sprite = leftSprite[equipmentData.id];
+
+            MeasureBodySizeControl(ref centerImg, equipmentData.id);
+            MeasureArmSizeControl(ref rightImg, equipmentData.id);
+            MeasureArmSizeControl(ref leftImg, equipmentData.id);
+
+            if(equipType == EQUIPMENTTYPE.ARMOR)
+            {
+                armor.GetComponent<SpriteRenderer>().sprite = centerSprite[equipmentData.id];
+                armorArmR.GetComponent<SpriteRenderer>().sprite = rightSprite[equipmentData.id];
+                armorArmL.GetComponent<SpriteRenderer>().sprite = leftSprite[equipmentData.id];
+            }
+            else if(equipType == EQUIPMENTTYPE.CLOTH)
+            {
+                cloth.GetComponent<SpriteRenderer>().sprite = centerSprite[equipmentData.id];
+                clothArmR.GetComponent<SpriteRenderer>().sprite = rightSprite[equipmentData.id];
+                clothArmL.GetComponent<SpriteRenderer>().sprite = leftSprite[equipmentData.id];
+            }
+
+        }
+        else if(equipType == EQUIPMENTTYPE.PANT)//이미지를 2개를 합쳐야하는 경우 
+        {
+            rightImg.sprite = rightSprite[equipmentData.id];
+            leftImg.sprite = leftSprite[equipmentData.id];
+
+            MeasureArmSizeControl(ref rightImg, equipmentData.id);
+            MeasureArmSizeControl(ref leftImg, equipmentData.id);
+
+            pantR.GetComponent<SpriteRenderer>().sprite = rightSprite[equipmentData.id];
+            pantL.GetComponent<SpriteRenderer>().sprite = leftSprite[equipmentData.id];
+        }
+        else if(equipType == EQUIPMENTTYPE.R_WEAPON || equipType == EQUIPMENTTYPE.L_WEAPON)//무기 착용일 때
+        {
+            img.sprite = sprite[equipmentData.id];
+            MeasureBodySizeControl(ref img, equipmentData.id);
+
+            if(equipType == EQUIPMENTTYPE.R_WEAPON)
+            {
+                weaponR.GetComponent<SpriteRenderer>().sprite = sprite[equipmentData.id];
+                Debug.Log("적용");
+            }
+            else if(equipType == EQUIPMENTTYPE.L_WEAPON)
+            {
+                weaponL.GetComponent<SpriteRenderer>().sprite = sprite[equipmentData.id];
+            }
+        }
+        else//나머지 경우
+        {
+            img.sprite = sprite[equipmentData.id];
+            SizeControl(ref img);
+
+            if(equipType == EQUIPMENTTYPE.HAT)
+            {
+                hat.GetComponent<SpriteRenderer>().sprite = sprite[equipmentData.id];
+            }
+            else if(equipType == EQUIPMENTTYPE.BACK)
+            {
+                back.GetComponent<SpriteRenderer>().sprite = sprite[equipmentData.id];
+            }
         }
     }
 
@@ -168,7 +223,7 @@ public class WearingEquipment : MonoBehaviour
             center.GetComponent<RectTransform>().sizeDelta *= 1.2f;
         }
 
-        wearingEquipInfo.transform.GetChild(2).GetComponent<Text>().text = equipmentData.name + $"{((equipmentData.level != 0) ? "+" + equipmentData.level: null)}";
+        wearingEquipInfo.transform.GetChild(2).GetComponent<Text>().text = equipmentData.name + $"{((equipmentData.level != 0) ? "+" + equipmentData.level : null)}";
         wearingEquipInfo.transform.GetChild(5).GetComponentInChildren<Text>().text =
             $"{((equipmentData.attackPower != 0) ? "공격력 : + " + equipmentData.attackPower + "\n" : null)}" +
             $"{((equipmentData.magicPower != 0) ? "주문력 : + " + equipmentData.magicPower + "\n" : null)}" +
