@@ -12,7 +12,7 @@ public class SkillDesc : MonoBehaviour
     [TextArea]
     Text Desc;
     //SkillButton button;
-    int skillid;
+    public int skillid;
 
     [SerializeField] // 유니티 에디터에서 보이도록 배열을 직렬화
     private SkillData[] skillDatas;

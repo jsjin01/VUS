@@ -5,73 +5,68 @@ using UnityEngine.UI;
 
 public class SkillSelect : MonoBehaviour
 {
-    float time = 0;
     public float Size = 1;
-    private int state;
+    public float upSizeTime = 0.3f;
 
-    public float upSizeTime = 0.5f;
-
-
-    [SerializeField] // 유니티 에디터에서 보이도록 배열을 직렬화
+    [SerializeField]
     private SkillData[] skillDatas;
 
-
-    Image icon;
-
+    private Image icon;
+    private int currentSkillId;
+    private Coroutine equipCoroutine;
 
     private void Start()
     {
         icon = GetComponent<Image>();
     }
 
-    public void SkillEquip(int state)
+    public void StartEquipProcess(int skillid)
     {
-        if(state == 1)//장착버튼 누르기 가능
-        {
-            CanEquip();
-        }
-        else//불가능
-        {
-            return;
-        }
+        currentSkillId = skillid;
+        equipCoroutine = StartCoroutine(CanEquip());  // 크기 변화 코루틴 시작
     }
 
-    public void CanEquip()//장착가능 상태를 표시하기 위해서 크기 변화주기
+    private IEnumerator CanEquip()
     {
-        if(time <= upSizeTime)
+        float time = 0;
+        while (true)
         {
-            transform.localScale = Vector3.one * (1 + Size + time);
+            if (time <= upSizeTime)
+            {
+                transform.localScale = Vector3.one * (0.5f + Size + (time * 0.3f));
+            }
+            else if (time <= upSizeTime * 2)
+            {
+                transform.localScale = Vector3.one * (1 * Size * upSizeTime + 1 - time * Size);
+            }
+            else
+            {
+                transform.localScale = Vector3.one;
+                time = 0;
+            }
+            time += Time.deltaTime;
+            yield return null;
         }
-        else if(time <= upSizeTime * 2)
-        {
-            transform.localScale = Vector3.one * (2 * Size * upSizeTime + 1 - time * Size);
-        }
-        else
-        {
-            transform.localScale = Vector3.one;
-        }
-        time += Time.deltaTime;
     }
 
     public void OnClick()
     {
-        time = 0;
-        state = 0;
-        SkillEquip(state);
-    }
-
-
-    public void GetSkillid(int skillid)
-    {
-        // skillDatas 배열에서 일치하는 Skillid를 찾기
-        foreach(var skillData in skillDatas)
+        if (equipCoroutine != null)
         {
-            if(skillData.Skillid == skillid)
+            StopCoroutine(equipCoroutine);  // 크기 변화 코루틴 중지
+        }
+
+        // SkillData 배열에서 currentSkillId와 일치하는 데이터를 찾아서 이미지 변경
+        foreach (var skillData in skillDatas)
+        {
+            if (skillData.Skillid == currentSkillId)
             {
-                icon.sprite = skillData.SkillIcon;
+                icon.sprite = skillData.SkillIcon;  // 아이콘 이미지 변경
                 break;
             }
         }
-    }
 
+        transform.localScale = Vector3.one;  // 크기 원래대로 설정
+    }
 }
+
