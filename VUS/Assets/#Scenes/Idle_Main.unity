@@ -3481,9 +3481,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 32
     m_FontStyle: 1
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 95
+    m_MaxSize: 32
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -9755,7 +9755,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 410729472}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 657159828}
+        m_TargetAssemblyTypeName: UpgradeEquipment, Assembly-CSharp
+        m_MethodName: Upgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &410729472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15980,6 +15992,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21618a7216e70e34bbbe40f4c6f0804d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 977855227}
+  currentTitle: {fileID: 114690423}
+  currentDescription: {fileID: 1999997997}
+  nextTitle: {fileID: 1800670289}
+  nextDescription: {fileID: 228557235}
+  cost: {fileID: 1589698889}
 --- !u!1 &662493001
 GameObject:
   m_ObjectHideFlags: 0
@@ -26229,6 +26247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee080ba3353bf340a58d13996ec7484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upgradeInfo: {fileID: 657159824}
 --- !u!1 &1165474166
 GameObject:
   m_ObjectHideFlags: 0
@@ -37711,9 +37730,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 32
     m_FontStyle: 1
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
-    m_MaxSize: 95
+    m_MaxSize: 32
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1

@@ -21,7 +21,7 @@ public class WearingEquipment : MonoBehaviour
     EquipmentData equipmentData;            //착용한 장비의 데이터
     [SerializeField] EQUIPMENTTYPE equipType;//해당 칸의 무기 타입
     [SerializeField] Sprite[] sprite;       //장비들의 이미지 
-    [SerializeField] Image img;             //해당 칸 이미지 변환 
+    [SerializeField]public Image img;             //해당 칸 이미지 변환 
     [SerializeField] string path;           //해당 칸의 경로 설정
     [SerializeField] GameObject wearingEquipInfo;
     [SerializeField] GameObject Blocker;
@@ -31,9 +31,9 @@ public class WearingEquipment : MonoBehaviour
     [SerializeField] Image rightImg; //오른쪽 이미지
     [SerializeField] Image leftImg;   //왼쪽 이미지
     //장비들의 이미지
-    [SerializeField] Sprite[] centerSprite;
-    [SerializeField] Sprite[] rightSprite;
-    [SerializeField] Sprite[] leftSprite;
+    [SerializeField]public Sprite[] centerSprite;
+    [SerializeField]public Sprite[] rightSprite;
+    [SerializeField]public Sprite[] leftSprite;
 
     List<MeasureData> MeasureDataList;
 
@@ -149,6 +149,8 @@ public class WearingEquipment : MonoBehaviour
 
     public void ShowButton()//데이터를 보여주는 버튼 
     {
+        wearingEquipInfo.GetComponent<InfoWearingEquipment>().UploadData(equipmentData, path);
+
         Blocker.GetComponent<Canvas>().sortingOrder += 1;
         wearingEquipInfo.SetActive(true);
 

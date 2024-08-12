@@ -42,8 +42,6 @@ public class EquipmentSlot : MonoBehaviour
     [SerializeField] GameObject rightWeapon;
     [SerializeField] GameObject leftWeapon;
 
-
-
     private void Start()
     {
         Blocker = GameObject.Find("FullBlocker");
@@ -84,6 +82,7 @@ public class EquipmentSlot : MonoBehaviour
         Blocker.GetComponent<Canvas>().sortingOrder += 1;
         slotInfo.SetActive(true);
     }
+
     void SortData()//Data에 따라 이미지 나누기
     {
         switch(equipType)
