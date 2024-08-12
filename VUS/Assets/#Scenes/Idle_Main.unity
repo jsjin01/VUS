@@ -51158,6 +51158,7 @@ MonoBehaviour:
   Price: 0
   State: 0
   Name: 
+  skillid: 0
   skillDatas:
   - {fileID: 11400000, guid: 5c64cd14aae878148b94eab041ddda1d, type: 2}
   - {fileID: 11400000, guid: c31fc1717fcf223459ef973d59bc2574, type: 2}
@@ -54427,7 +54428,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2015495244416075608}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8845781724622294378}
+        m_TargetAssemblyTypeName: SkillSelect, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &8168575684656521635
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55137,7 +55150,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7946280683690834784}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8604468828095801138}
+        m_TargetAssemblyTypeName: SkillSelect, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8604468828095801138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55242,7 +55267,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1904073378347046846}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8674548434994296611}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: Select
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8674548434994296612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55997,7 +56034,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Desc: {fileID: 5459803847800913161}
-  SkillButtonParant: {fileID: 1177254771830093201}
   SkillSelectParant: {fileID: 1177254771830093201}
 --- !u!1 &9151240123582676898
 GameObject:
