@@ -14,10 +14,13 @@ public class SkillSelect : MonoBehaviour
     private Image icon;
     private int currentSkillId;
     private Coroutine equipCoroutine;
+    SkillManager skillManager;
 
-    private void Start()
+    private void OnEnable()
     {
         icon = GetComponent<Image>();
+        GameObject Target = GameObject.Find("Skill/SkillManager");
+        skillManager = Target.GetComponent<SkillManager>();
     }
 
     public void StartEquipProcess(int skillid)
@@ -33,11 +36,11 @@ public class SkillSelect : MonoBehaviour
         {
             if (time <= upSizeTime)
             {
-                transform.localScale = Vector3.one * (0.5f + Size + (time * 0.3f));
+                transform.localScale = Vector3.one * ( time * 1.2f);
             }
             else if (time <= upSizeTime * 2)
             {
-                transform.localScale = Vector3.one * (1 * Size * upSizeTime + 1 - time * Size);
+                transform.localScale = Vector3.one * (time * 1.5f);
             }
             else
             {
@@ -53,7 +56,8 @@ public class SkillSelect : MonoBehaviour
     {
         if (equipCoroutine != null)
         {
-            StopCoroutine(equipCoroutine);  // 크기 변화 코루틴 중지
+            StopEquipCoroutine();  // 크기 변화 코루틴 중지
+            skillManager.SelectStop();
         }
 
         // SkillData 배열에서 currentSkillId와 일치하는 데이터를 찾아서 이미지 변경
@@ -67,6 +71,17 @@ public class SkillSelect : MonoBehaviour
         }
 
         transform.localScale = Vector3.one;  // 크기 원래대로 설정
+    }
+
+    public void StopEquipCoroutine()
+    {
+        StopCoroutine(equipCoroutine);
+        transform.localScale = Vector3.one;
+    }
+
+    public bool IsCoroutineRunning()
+    {
+        return equipCoroutine != null;
     }
 }
 
