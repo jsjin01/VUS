@@ -10,11 +10,16 @@ public class PlayerStats : MonoBehaviour
     public int currentMP;
     public int maxEXP = 100;
     public int currentEXP;
+    public int gold = 1000;
+    public int minerals = 500;
 
     public Slider hpBar;
     public Slider mpBar;
     public Slider expBar;
     public Button levelUpButton;
+
+    public Text goldText;
+    public Text mineralsText;
 
     private void Start()
     {
@@ -36,6 +41,8 @@ public class PlayerStats : MonoBehaviour
         hpBar.value = currentHP;
         mpBar.value = currentMP;
         expBar.value = currentEXP;
+        goldText.text = "Gold: " + gold;
+        mineralsText.text = "강화석: " + minerals;
     }
 
     public void TakeDamage(int damage)
@@ -45,6 +52,21 @@ public class PlayerStats : MonoBehaviour
         UpdateUI();
     }
 
+    // 골드 증가 메서드
+    public void AddGold(int amount)
+    {
+        gold += amount;
+        UpdateUI();
+    }
+
+    // 광물 증가 메서드
+    public void AddMinerals(int amount)
+    {
+        minerals += amount;
+        UpdateUI();
+    }
+
+    // 마나 사용 메서드
     public void UseMP(int mp)
     {
         currentMP -= mp;
@@ -52,6 +74,7 @@ public class PlayerStats : MonoBehaviour
         UpdateUI();
     }
 
+   // 경험치 메서드
     public void GainEXP(int exp)
     {
         currentEXP += exp;
