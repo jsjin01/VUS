@@ -13,6 +13,6 @@ public class Cancel : MonoBehaviour
     public void CancelBtn()//Ã¢ ´Ý´Â ¹öÆ°
     {
         transform.parent.gameObject.SetActive(false);
-        Blocker.GetComponent<Canvas>().sortingOrder = -1;
+        Blocker.GetComponent<Canvas>().sortingOrder += -1;
     }
 }

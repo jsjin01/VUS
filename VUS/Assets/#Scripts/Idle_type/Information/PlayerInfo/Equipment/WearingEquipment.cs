@@ -59,7 +59,7 @@ public class WearingEquipment : MonoBehaviour
         DataLoad();
     }
 
-    void DataLoad() //데이터 로드 과정
+    public void DataLoad() //데이터 로드 과정
     {
         string filePath = Path.Combine(Application.dataPath, path);
 

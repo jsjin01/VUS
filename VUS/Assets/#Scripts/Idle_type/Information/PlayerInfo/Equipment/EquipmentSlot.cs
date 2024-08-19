@@ -53,12 +53,12 @@ public class EquipmentSlot : MonoBehaviour
         slotInfo = transform.parent.parent.parent.parent.parent.parent.GetChild(5).gameObject;
         gameObject.GetComponent<Button>().onClick.AddListener(ShowInfo);//버튼 클릭 
 
+        path = path + index + ".json";
         DataLoad();
     }
 
-    void DataLoad() //데이터 로드 함수
+    public void DataLoad() //데이터 로드 함수
     {
-        path = path + index + ".json";
         string filePath = Path.Combine(Application.dataPath, path);
 
         if(File.Exists(filePath))
@@ -82,7 +82,7 @@ public class EquipmentSlot : MonoBehaviour
     }
 
 
-    void ShowInfo()
+    public void ShowInfo()
     {
         Blocker.GetComponent<Canvas>().sortingOrder += 1;
         slotInfo.SetActive(true);
@@ -101,6 +101,10 @@ public class EquipmentSlot : MonoBehaviour
 
         selectEquipment.GetComponent<WearingEquipment>().InfoImg(slotInfo.transform.GetChild(0).gameObject);
         SlotInfoImg(slotInfo.transform.GetChild(1).gameObject);
+
+        string slotPath = Path.Combine(Application.dataPath, path);
+
+        slotInfo.GetComponent<InfoSlotEquipment>().LoadData(filePath, slotPath, equipmentData, slotData, selectEquipment, gameObject);
     }
 
 
@@ -321,16 +325,16 @@ public class EquipmentSlot : MonoBehaviour
             center.GetComponent<RectTransform>().sizeDelta *= 1.2f;
         }
 
-        equipmentInfo.transform.GetChild(2).GetComponent<Text>().text = equipmentData.name + $"{((equipmentData.level != 0) ? "+" + equipmentData.level : null)}";
+        equipmentInfo.transform.GetChild(2).GetComponent<Text>().text = slotData.name + $"{((slotData.level != 0) ? "+" + slotData.level : null)}";
         equipmentInfo.transform.GetChild(5).GetComponentInChildren<Text>().text =
-            $"{((equipmentData.attackPower != 0) ? "공격력 : + " + equipmentData.attackPower + "\n" : null)}" +
-            $"{((equipmentData.magicPower != 0) ? "주문력 : + " + equipmentData.magicPower + "\n" : null)}" +
-            $"{((equipmentData.speed != 0) ? "이동 속도 : + " + equipmentData.speed + "\n" : null)}" +
-            $"{((equipmentData.maxHp != 0) ? "육체강화 : + " + equipmentData.maxHp / 10 + "\n" : null)}" +
-            $"{((equipmentData.cri != 0) ? "치명타 : + " + equipmentData.cri + "\n" : null)}" +
-            $"{((equipmentData.criDmg != 0) ? "치명타 데미지 : + " + equipmentData.criDmg + "\n" : null)}";
+            $"{((slotData.attackPower != 0) ? "공격력 : + " + slotData.attackPower + "\n" : null)}" +
+            $"{((slotData.magicPower != 0) ? "주문력 : + " + slotData.magicPower + "\n" : null)}" +
+            $"{((slotData.speed != 0) ? "이동 속도 : + " + slotData.speed + "\n" : null)}" +
+            $"{((slotData.maxHp != 0) ? "육체강화 : + " + slotData.maxHp / 10 + "\n" : null)}" +
+            $"{((slotData.cri != 0) ? "치명타 : + " + slotData.cri + "\n" : null)}" +
+            $"{((slotData.criDmg != 0) ? "치명타 데미지 : + " + slotData.criDmg + "\n" : null)}";
 
-        switch(equipmentData.synergy)
+        switch(slotData.synergy)
         {
             case EQUIPMENTSYNERGY.NONE:
                 for(int i = 0; i < 6; i++)
