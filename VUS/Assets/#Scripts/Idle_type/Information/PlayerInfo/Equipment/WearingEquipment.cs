@@ -21,8 +21,8 @@ public class WearingEquipment : MonoBehaviour
     EquipmentData equipmentData;            //착용한 장비의 데이터
     [SerializeField] EQUIPMENTTYPE equipType;//해당 칸의 무기 타입
     [SerializeField] Sprite[] sprite;       //장비들의 이미지 
-    [SerializeField]public Image img;             //해당 칸 이미지 변환 
-    [SerializeField] string path;           //해당 칸의 경로 설정
+    [SerializeField] public Image img;             //해당 칸 이미지 변환 
+    [SerializeField] public string path;           //해당 칸의 경로 설정
     [SerializeField] GameObject wearingEquipInfo;
     [SerializeField] GameObject Blocker;
 
@@ -154,16 +154,20 @@ public class WearingEquipment : MonoBehaviour
         Blocker.GetComponent<Canvas>().sortingOrder += 1;
         wearingEquipInfo.SetActive(true);
 
-        //이미지 적용
+        InfoImg(wearingEquipInfo);
+    }
+
+    public void InfoImg(GameObject equipmentInfo) //설명 정렬 함수 
+    {
         if(equipType == EQUIPMENTTYPE.ARMOR || equipType == EQUIPMENTTYPE.CLOTH)//이미지를 3개를 합쳐야하는 경우
         {
-            wearingEquipInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
-            wearingEquipInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
-            wearingEquipInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(false);
+            equipmentInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
+            equipmentInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
+            equipmentInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(false);
 
-            Image center = wearingEquipInfo.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Image>();
-            Image right = wearingEquipInfo.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<Image>();
-            Image left = wearingEquipInfo.transform.GetChild(1).GetChild(1).GetChild(2).GetComponent<Image>();
+            Image center = equipmentInfo.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Image>();
+            Image right = equipmentInfo.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<Image>();
+            Image left = equipmentInfo.transform.GetChild(1).GetChild(1).GetChild(2).GetComponent<Image>();
 
             center.sprite = centerSprite[equipmentData.id];
             right.sprite = rightSprite[equipmentData.id];
@@ -180,12 +184,12 @@ public class WearingEquipment : MonoBehaviour
         }
         else if(equipType == EQUIPMENTTYPE.PANT)//이미지를 2개를 합쳐야하는 경우 
         {
-            wearingEquipInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
-            wearingEquipInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(true);
-            wearingEquipInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(false);
+            equipmentInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
+            equipmentInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(true);
+            equipmentInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(false);
 
-            Image right = wearingEquipInfo.transform.GetChild(1).GetChild(2).GetChild(0).GetComponent<Image>();
-            Image left = wearingEquipInfo.transform.GetChild(1).GetChild(2).GetChild(1).GetComponent<Image>();
+            Image right = equipmentInfo.transform.GetChild(1).GetChild(2).GetChild(0).GetComponent<Image>();
+            Image left = equipmentInfo.transform.GetChild(1).GetChild(2).GetChild(1).GetComponent<Image>();
 
             right.sprite = rightSprite[equipmentData.id];
             left.sprite = leftSprite[equipmentData.id];
@@ -198,11 +202,11 @@ public class WearingEquipment : MonoBehaviour
         }
         else if(equipType == EQUIPMENTTYPE.R_WEAPON || equipType == EQUIPMENTTYPE.L_WEAPON)//무기 착용일 때
         {
-            wearingEquipInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
-            wearingEquipInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
-            wearingEquipInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(true);
+            equipmentInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
+            equipmentInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
+            equipmentInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(true);
 
-            Image center = wearingEquipInfo.transform.GetChild(1).GetChild(3).GetChild(0).GetComponent<Image>();
+            Image center = equipmentInfo.transform.GetChild(1).GetChild(3).GetChild(0).GetComponent<Image>();
 
             center.sprite = sprite[equipmentData.id];
 
@@ -212,11 +216,11 @@ public class WearingEquipment : MonoBehaviour
         }
         else//나머지 경우
         {
-            wearingEquipInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
-            wearingEquipInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
-            wearingEquipInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(true);
+            equipmentInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
+            equipmentInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
+            equipmentInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(true);
 
-            Image center = wearingEquipInfo.transform.GetChild(1).GetChild(3).GetChild(0).GetComponent<Image>();
+            Image center = equipmentInfo.transform.GetChild(1).GetChild(3).GetChild(0).GetComponent<Image>();
 
             center.sprite = sprite[equipmentData.id];
 
@@ -225,25 +229,21 @@ public class WearingEquipment : MonoBehaviour
             center.GetComponent<RectTransform>().sizeDelta *= 1.2f;
         }
 
-        wearingEquipInfo.transform.GetChild(2).GetComponent<Text>().text = equipmentData.name + $"{((equipmentData.level != 0) ? "+" + equipmentData.level : null)}";
-        wearingEquipInfo.transform.GetChild(5).GetComponentInChildren<Text>().text =
+        equipmentInfo.transform.GetChild(2).GetComponent<Text>().text = equipmentData.name + $"{((equipmentData.level != 0) ? "+" + equipmentData.level : null)}";
+        equipmentInfo.transform.GetChild(5).GetComponentInChildren<Text>().text =
             $"{((equipmentData.attackPower != 0) ? "공격력 : + " + equipmentData.attackPower + "\n" : null)}" +
             $"{((equipmentData.magicPower != 0) ? "주문력 : + " + equipmentData.magicPower + "\n" : null)}" +
             $"{((equipmentData.speed != 0) ? "이동 속도 : + " + equipmentData.speed + "\n" : null)}" +
             $"{((equipmentData.maxHp != 0) ? "육체강화 : + " + equipmentData.maxHp / 10 + "\n" : null)}" +
             $"{((equipmentData.cri != 0) ? "치명타 : + " + equipmentData.cri + "\n" : null)}" +
             $"{((equipmentData.criDmg != 0) ? "치명타 데미지 : + " + equipmentData.criDmg + "\n" : null)}";
-        SynergySort();
-    }
 
-    void SynergySort() //시너지 정렬하는 함수 
-    {
         switch(equipmentData.synergy)
         {
             case EQUIPMENTSYNERGY.NONE:
                 for(int i = 0; i < 6; i++)
                 {
-                    wearingEquipInfo.transform.GetChild(6).GetChild(i).GetComponent<Text>().text = null;
+                    equipmentInfo.transform.GetChild(6).GetChild(i).GetComponent<Text>().text = null;
                 }
                 break;
             default:
