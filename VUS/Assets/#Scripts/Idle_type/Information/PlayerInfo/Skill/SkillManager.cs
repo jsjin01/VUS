@@ -5,7 +5,8 @@ using UnityEngine;
 public class SkillManager : MonoBehaviour
 {
     public SkillSelect[] skillbutton;
-    
+
+
     public void SelectStop()
     {
         foreach (var button in skillbutton)
@@ -15,6 +16,11 @@ public class SkillManager : MonoBehaviour
                 button.StopEquipCoroutine();
             }
         }
+    }
+
+    public void AddSkill()
+    {
+        
     }
 
 }
