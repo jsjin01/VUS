@@ -8,7 +8,7 @@ public class SkillSelect : MonoBehaviour
     public float Size = 1;
     public float upSizeTime = 0.3f;
 
-    
+    public int state = 0;
 
 
     [SerializeField]
@@ -19,6 +19,8 @@ public class SkillSelect : MonoBehaviour
     private int currentSkillId;
     private Coroutine equipCoroutine;
     SkillManager skillManager;
+    public GameObject Desc;
+    public GameObject equipButton;
 
     public struct UsingSkills
     {
@@ -72,24 +74,33 @@ public class SkillSelect : MonoBehaviour
 
     public void OnClick1()
     {
-        if (equipCoroutine != null)
+        if (state == 0)
         {
-            StopEquipCoroutine();  // 크기 변화 코루틴 중지
-            skillManager.SelectStop();
+            //Desc.SetActive(true);
+            //equipButton.SetActive(false);
+            state = 0;
         }
-
-        // SkillData 배열에서 currentSkillId와 일치하는 데이터를 찾아서 이미지 변경
-        foreach (var skillData in skillDatas)
+        if (state == 1)
         {
-            if (skillData.Skillid == currentSkillId)
+            if (equipCoroutine != null)
             {
-                icon.sprite = skillData.SkillIcon;  // 아이콘 이미지 변경
-                
-                UsingSkill[0].SKillid = currentSkillId;
-                Debug.Log(UsingSkill[0].SKillid);
-                
-                break;
+                StopEquipCoroutine();  // 크기 변화 코루틴 중지
+                skillManager.SelectStop();
             }
+
+            // SkillData 배열에서 currentSkillId와 일치하는 데이터를 찾아서 이미지 변경
+            foreach (var skillData in skillDatas)
+            {
+                if (skillData.Skillid == currentSkillId)
+                {
+                    icon.sprite = skillData.SkillIcon;  // 아이콘 이미지 변경
+                
+                    UsingSkill[0].SKillid = currentSkillId;
+                    Debug.Log(UsingSkill[0].SKillid);
+                    state = 0;
+                    break;
+                }
+            }          
         }
 
         transform.localScale = Vector3.one;  // 크기 원래대로 설정
@@ -97,47 +108,67 @@ public class SkillSelect : MonoBehaviour
 
     public void OnClick2()
     {
-        if (equipCoroutine != null)
+        if (state == 0)
         {
-            StopEquipCoroutine();  // 크기 변화 코루틴 중지
-            skillManager.SelectStop();
+            //Desc.SetActive(true);
+            //equipButton.SetActive(false);
+            state = 0;
         }
-
-        // SkillData 배열에서 currentSkillId와 일치하는 데이터를 찾아서 이미지 변경
-        foreach (var skillData in skillDatas)
+        if (state == 1)
         {
-            if (skillData.Skillid == currentSkillId)
+            if (equipCoroutine != null)
             {
-                icon.sprite = skillData.SkillIcon;  // 아이콘 이미지 변경
-                UsingSkill[1].SKillid = currentSkillId;
-                Debug.Log(UsingSkill[1].SKillid);
-                break;
+                StopEquipCoroutine();  // 크기 변화 코루틴 중지
+                skillManager.SelectStop();
+            }
+
+            // SkillData 배열에서 currentSkillId와 일치하는 데이터를 찾아서 이미지 변경
+            foreach (var skillData in skillDatas)
+            {
+                if (skillData.Skillid == currentSkillId)
+                {
+                    icon.sprite = skillData.SkillIcon;  // 아이콘 이미지 변경
+
+                    UsingSkill[1].SKillid = currentSkillId;
+                    Debug.Log(UsingSkill[1].SKillid);
+                    state = 0;
+                    break;
+                }
             }
         }
-
         transform.localScale = Vector3.one;  // 크기 원래대로 설정
     }
 
     public void OnClick3()
     {
-        if (equipCoroutine != null)
+        if (state == 0)
         {
-            StopEquipCoroutine();  // 크기 변화 코루틴 중지
-            skillManager.SelectStop();
+            //Desc.SetActive(true);
+            //equipButton.SetActive(false);
+            state = 0;
         }
-
-        // SkillData 배열에서 currentSkillId와 일치하는 데이터를 찾아서 이미지 변경
-        foreach (var skillData in skillDatas)
+        if (state == 1)
         {
-            if (skillData.Skillid == currentSkillId)
+            if (equipCoroutine != null)
             {
-                icon.sprite = skillData.SkillIcon;  // 아이콘 이미지 변경
-                UsingSkill[2].SKillid = currentSkillId;
-                Debug.Log(UsingSkill[2].SKillid);
-                break;
+                StopEquipCoroutine();  // 크기 변화 코루틴 중지
+                skillManager.SelectStop();
+            }
+
+            // SkillData 배열에서 currentSkillId와 일치하는 데이터를 찾아서 이미지 변경
+            foreach (var skillData in skillDatas)
+            {
+                if (skillData.Skillid == currentSkillId)
+                {
+                    icon.sprite = skillData.SkillIcon;  // 아이콘 이미지 변경
+
+                    UsingSkill[2].SKillid = currentSkillId;
+                    Debug.Log(UsingSkill[2].SKillid);
+                    state = 0;
+                    break;
+                }
             }
         }
-
         transform.localScale = Vector3.one;  // 크기 원래대로 설정
     }
 

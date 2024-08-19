@@ -27,6 +27,7 @@ public class Skillequip : MonoBehaviour
             {
                 if (select != null)
                 {
+                    select.state = 1;
                     select.StartEquipProcess(skillid);  // 모든 SkillSelect에 대해 코루틴 시작
                 }
             }
