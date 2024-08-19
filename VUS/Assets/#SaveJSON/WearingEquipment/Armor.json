@@ -1,9 +1,9 @@
 {
     "name": "",
     "info": "",
-    "level": 1,
+    "level": 2,
     "id": 8,
-    "attackPower": 0.0,
+    "attackPower": 5.0,
     "magicPower": 0.0,
     "speed": 0.0,
     "maxHp": 0.0,
