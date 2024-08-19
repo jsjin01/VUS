@@ -9,7 +9,7 @@ using static WearingEquipment;
 public class EquipmentSlot : MonoBehaviour
 {
     [SerializeField] int index; //슬롯 번호
-    EquipmentData equipmentData;//해당칸의 장비 데이터
+    EquipmentData slotData;//해당칸의 장비 데이터
     string path = "#SaveJSON/EquipmentSlot/EquipmentSlot";
 
     ImageData selectData;
@@ -42,6 +42,11 @@ public class EquipmentSlot : MonoBehaviour
     [SerializeField] GameObject rightWeapon;
     [SerializeField] GameObject leftWeapon;
 
+    GameObject selectEquipment; //선택된 장비 
+
+    EquipmentData equipmentData;
+
+
     private void Start()
     {
         Blocker = GameObject.Find("FullBlocker");
@@ -62,14 +67,14 @@ public class EquipmentSlot : MonoBehaviour
             string jsonData = File.ReadAllText(filePath);
 
             // JSON 데이터를 EquipmentData 객체로 변환 
-            equipmentData = JsonUtility.FromJson<EquipmentData>(jsonData);
+            slotData = JsonUtility.FromJson<EquipmentData>(jsonData);
         }
         else
         {
             Debug.LogError("Cannot find JSON file at " + filePath);
         }
 
-        equipType = equipmentData.type;
+        equipType = slotData.type;
 
         SortData();
 
@@ -81,6 +86,57 @@ public class EquipmentSlot : MonoBehaviour
     {
         Blocker.GetComponent<Canvas>().sortingOrder += 1;
         slotInfo.SetActive(true);
+        SelectedGameObj(slotData.type);
+
+        string filePath = Path.Combine(Application.dataPath, selectEquipment.GetComponent<WearingEquipment>().path);
+
+        if(File.Exists(filePath))
+        {
+            // JSON 파일 읽기
+            string jsonData = File.ReadAllText(filePath);
+
+            // JSON 데이터를 EquipmentData 객체로 변환 
+            equipmentData = JsonUtility.FromJson<EquipmentData>(jsonData);
+        }
+
+        selectEquipment.GetComponent<WearingEquipment>().InfoImg(slotInfo.transform.GetChild(0).gameObject);
+        SlotInfoImg(slotInfo.transform.GetChild(1).gameObject);
+    }
+
+
+
+    void SelectedGameObj(EQUIPMENTTYPE type) //slot과 같은 장비를 가져오는 함수 
+    {
+        switch(type)
+        {
+            case EQUIPMENTTYPE.HAT:
+                selectEquipment = hat;
+                break;
+            case EQUIPMENTTYPE.ARMOR:
+                selectEquipment = armor;
+                break;
+            case EQUIPMENTTYPE.CLOTH:
+                selectEquipment = cloth;
+                break;
+            case EQUIPMENTTYPE.PANT:
+                selectEquipment = pant;
+                break;
+            case EQUIPMENTTYPE.BACK:
+                selectEquipment = back;
+                break;
+            case EQUIPMENTTYPE.R_WEAPON:
+                selectEquipment = rightWeapon;
+                break;
+            case EQUIPMENTTYPE.L_WEAPON:
+                selectEquipment = leftWeapon;
+                break;
+            case EQUIPMENTTYPE.NECKLACE:
+                selectEquipment = necklace1;
+                break;
+            case EQUIPMENTTYPE.RING:
+                selectEquipment = ring1;
+                break;
+        }
     }
 
     void SortData()//Data에 따라 이미지 나누기
@@ -94,7 +150,7 @@ public class EquipmentSlot : MonoBehaviour
                 selectData = armorImg;
                 break;
             case EQUIPMENTTYPE.CLOTH:
-                selectData= clothImg;
+                selectData = clothImg;
                 break;
             case EQUIPMENTTYPE.PANT:
                 selectData = pantImg;
@@ -132,13 +188,13 @@ public class EquipmentSlot : MonoBehaviour
             Image right = transform.GetChild(0).GetChild(1).GetComponent<Image>();
             Image left = transform.GetChild(0).GetChild(2).GetComponent<Image>();
 
-            center.sprite = selectData.center[equipmentData.id];
-            right.sprite = selectData.right[equipmentData.id];
-            left.sprite = selectData.left[equipmentData.id];
+            center.sprite = selectData.center[slotData.id];
+            right.sprite = selectData.right[slotData.id];
+            left.sprite = selectData.left[slotData.id];
 
-            MeasureBodySizeControl(ref center, equipmentData.id);
-            MeasureArmSizeControl(ref right, equipmentData.id);
-            MeasureArmSizeControl(ref left, equipmentData.id);
+            MeasureBodySizeControl(ref center, slotData.id);
+            MeasureArmSizeControl(ref right, slotData.id);
+            MeasureArmSizeControl(ref left, slotData.id);
 
             center.GetComponent<RectTransform>().sizeDelta *= 1.2f;
             right.GetComponent<RectTransform>().sizeDelta *= 1.2f;
@@ -154,11 +210,11 @@ public class EquipmentSlot : MonoBehaviour
             Image right = transform.GetChild(1).GetChild(0).GetComponent<Image>();
             Image left = transform.GetChild(1).GetChild(1).GetComponent<Image>();
 
-            right.sprite = selectData.right[equipmentData.id];
-            left.sprite = selectData.left[equipmentData.id];
+            right.sprite = selectData.right[slotData.id];
+            left.sprite = selectData.left[slotData.id];
 
-            MeasureArmSizeControl(ref right, equipmentData.id);
-            MeasureArmSizeControl(ref left, equipmentData.id);
+            MeasureArmSizeControl(ref right, slotData.id);
+            MeasureArmSizeControl(ref left, slotData.id);
 
             right.GetComponent<RectTransform>().sizeDelta *= 1.2f;
             left.GetComponent<RectTransform>().sizeDelta *= 1.2f;
@@ -171,9 +227,9 @@ public class EquipmentSlot : MonoBehaviour
 
             Image center = transform.GetChild(2).GetChild(0).GetComponent<Image>();
 
-            center.sprite = selectData.center[equipmentData.id];
+            center.sprite = selectData.center[slotData.id];
 
-            MeasureBodySizeControl(ref center, equipmentData.id);
+            MeasureBodySizeControl(ref center, slotData.id);
 
             center.GetComponent<RectTransform>().sizeDelta *= 1.2f;
         }
@@ -185,11 +241,105 @@ public class EquipmentSlot : MonoBehaviour
 
             Image center = transform.GetChild(2).GetChild(0).GetComponent<Image>();
 
-            center.sprite = selectData.center[equipmentData.id];
+            center.sprite = selectData.center[slotData.id];
 
             SizeControl(ref center);
 
             center.GetComponent<RectTransform>().sizeDelta *= 1.2f;
+        }
+    }
+
+    void SlotInfoImg(GameObject equipmentInfo) //설명 정렬 함수 
+    {
+        if(equipType == EQUIPMENTTYPE.ARMOR || equipType == EQUIPMENTTYPE.CLOTH)//이미지를 3개를 합쳐야하는 경우
+        {
+            equipmentInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(true);
+            equipmentInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
+            equipmentInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(false);
+
+            Image center = equipmentInfo.transform.GetChild(1).GetChild(1).GetChild(0).GetComponent<Image>();
+            Image right = equipmentInfo.transform.GetChild(1).GetChild(1).GetChild(1).GetComponent<Image>();
+            Image left = equipmentInfo.transform.GetChild(1).GetChild(1).GetChild(2).GetComponent<Image>();
+
+
+            center.sprite = selectData.center[slotData.id];
+            right.sprite = selectData.right[slotData.id];
+            left.sprite = selectData.left[slotData.id];
+
+            MeasureBodySizeControl(ref center, equipmentData.id);
+            MeasureArmSizeControl(ref right, equipmentData.id);
+            MeasureArmSizeControl(ref left, equipmentData.id);
+
+            center.GetComponent<RectTransform>().sizeDelta *= 1.2f;
+            right.GetComponent<RectTransform>().sizeDelta *= 1.2f;
+            left.GetComponent<RectTransform>().sizeDelta *= 1.2f;
+
+        }
+        else if(equipType == EQUIPMENTTYPE.PANT)//이미지를 2개를 합쳐야하는 경우 
+        {
+            equipmentInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
+            equipmentInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(true);
+            equipmentInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(false);
+
+            Image right = equipmentInfo.transform.GetChild(1).GetChild(2).GetChild(0).GetComponent<Image>();
+            Image left = equipmentInfo.transform.GetChild(1).GetChild(2).GetChild(1).GetComponent<Image>();
+
+            right.sprite = selectData.right[slotData.id];
+            left.sprite = selectData.left[slotData.id];
+
+            MeasureArmSizeControl(ref right, equipmentData.id);
+            MeasureArmSizeControl(ref left, equipmentData.id);
+
+            right.GetComponent<RectTransform>().sizeDelta *= 1.2f;
+            left.GetComponent<RectTransform>().sizeDelta *= 1.2f;
+        }
+        else if(equipType == EQUIPMENTTYPE.R_WEAPON || equipType == EQUIPMENTTYPE.L_WEAPON)//무기 착용일 때
+        {
+            equipmentInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
+            equipmentInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
+            equipmentInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(true);
+
+            Image center = equipmentInfo.transform.GetChild(1).GetChild(3).GetChild(0).GetComponent<Image>();
+
+            center.sprite = selectData.center[slotData.id];
+            MeasureBodySizeControl(ref center, equipmentData.id);
+
+            center.GetComponent<RectTransform>().sizeDelta *= 1.2f;
+        }
+        else//나머지 경우
+        {
+            equipmentInfo.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
+            equipmentInfo.transform.GetChild(1).GetChild(2).gameObject.SetActive(false);
+            equipmentInfo.transform.GetChild(1).GetChild(3).gameObject.SetActive(true);
+
+            Image center = equipmentInfo.transform.GetChild(1).GetChild(3).GetChild(0).GetComponent<Image>();
+
+            center.sprite = selectData.center[slotData.id];
+
+            SizeControl(ref center);
+
+            center.GetComponent<RectTransform>().sizeDelta *= 1.2f;
+        }
+
+        equipmentInfo.transform.GetChild(2).GetComponent<Text>().text = equipmentData.name + $"{((equipmentData.level != 0) ? "+" + equipmentData.level : null)}";
+        equipmentInfo.transform.GetChild(5).GetComponentInChildren<Text>().text =
+            $"{((equipmentData.attackPower != 0) ? "공격력 : + " + equipmentData.attackPower + "\n" : null)}" +
+            $"{((equipmentData.magicPower != 0) ? "주문력 : + " + equipmentData.magicPower + "\n" : null)}" +
+            $"{((equipmentData.speed != 0) ? "이동 속도 : + " + equipmentData.speed + "\n" : null)}" +
+            $"{((equipmentData.maxHp != 0) ? "육체강화 : + " + equipmentData.maxHp / 10 + "\n" : null)}" +
+            $"{((equipmentData.cri != 0) ? "치명타 : + " + equipmentData.cri + "\n" : null)}" +
+            $"{((equipmentData.criDmg != 0) ? "치명타 데미지 : + " + equipmentData.criDmg + "\n" : null)}";
+
+        switch(equipmentData.synergy)
+        {
+            case EQUIPMENTSYNERGY.NONE:
+                for(int i = 0; i < 6; i++)
+                {
+                    equipmentInfo.transform.GetChild(6).GetChild(i).GetComponent<Text>().text = null;
+                }
+                break;
+            default:
+                break;
         }
     }
 
