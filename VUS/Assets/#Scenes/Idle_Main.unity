@@ -54532,7 +54532,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8845781724622294378}
         m_TargetAssemblyTypeName: SkillSelect, Assembly-CSharp
-        m_MethodName: OnClick
+        m_MethodName: OnClick1
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -55254,7 +55254,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8604468828095801138}
         m_TargetAssemblyTypeName: SkillSelect, Assembly-CSharp
-        m_MethodName: OnClick
+        m_MethodName: OnClick2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -55371,7 +55371,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8674548434994296612}
         m_TargetAssemblyTypeName: SkillSelect, Assembly-CSharp
-        m_MethodName: OnClick
+        m_MethodName: OnClick3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

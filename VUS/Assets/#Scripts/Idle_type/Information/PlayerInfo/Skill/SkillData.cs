@@ -15,6 +15,7 @@ public class SkillData : ScriptableObject
     public float Mana;
     public string SkillName;
     public int Price;
+    public float CoolTime;
     [TextArea]
     public string SkillDesc;
     public Sprite SkillIcon;
